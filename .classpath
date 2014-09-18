@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry exported="true" kind="con" path="GROOVY_SUPPORT"/>
+	<classpathentry exported="true" kind="con" path="GROOVY_DSL_SUPPORT"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derby.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyclient.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyLocale_cs.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyLocale_de_DE.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyLocale_es.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyLocale_fr.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyLocale_hu.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyLocale_it.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyLocale_ja_JP.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyLocale_ko_KR.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyLocale_pl.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyLocale_pt_BR.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyLocale_ru.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyLocale_zh_CN.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyLocale_zh_TW.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbynet.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbyrun.jar"/>
+	<classpathentry kind="lib" path="/opt/Apache/db-derby-10.10.2.0-bin/lib/derbytools.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream-1.4.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream-benchmark-1.4.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream-hibernate-1.4.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/cglib-nodep-2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/dom4j-1.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/jdom2-2.0.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/jdom-1.1.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/jettison-1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/joda-time-1.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/json-20080701.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/kxml2-2.3.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/kxml2-min-2.3.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/stax-1.2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/stax-api-1.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/wstx-asl-3.2.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/xmlpull-1.1.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/xom-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream/xpp3_min-1.1.4c.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream-hibernate/antlr-2.7.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream-hibernate/dom4j-1.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream-hibernate/hibernate-commons-annotations-4.0.2.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream-hibernate/hibernate-core-4.2.5.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream-hibernate/hibernate-entitymanager-4.2.5.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream-hibernate/hibernate-envers-4.2.5.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream-hibernate/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream-hibernate/javassist-3.15.0-GA.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream-hibernate/jboss-logging-3.1.0.GA.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream-hibernate/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/xstream-1.4.7/lib/xstream-hibernate/slf4j-api-1.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Documents/training-project-2014/training-project-2014/lib/mysql-connector-java-5.1.10-bin.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/postgresql-9.3-1102.jdbc3.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/postgresql-9.3-1102.jdbc4.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/postgresql-9.3-1102.jdbc41.jar"/>
+	<classpathentry kind="output" path="build"/>
+</classpath>

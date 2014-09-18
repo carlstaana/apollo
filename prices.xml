@@ -1,0 +1,185 @@
+<priceList>
+  <price>
+    <id>1</id>
+    <productId>4807698514672</productId>
+    <amount currency="PHP">59.00</amount>
+    <fromDate>2014-06-01 00:00:00</fromDate>
+    <thruDate>2014-06-30 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>2</id>
+    <productId>4805279843658</productId>
+    <amount currency="PHP">23.00</amount>
+    <fromDate>2014-06-01 00:00:00</fromDate>
+    <thruDate>2014-06-30 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>3</id>
+    <productId>4809648741447</productId>
+    <amount currency="PHP">20.00</amount>
+    <fromDate>2014-06-01 00:00:00</fromDate>
+    <thruDate>2014-06-30 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>4</id>
+    <productId>4806985232565</productId>
+    <amount currency="PHP">27.00</amount>
+    <fromDate>2014-06-01 00:00:00</fromDate>
+    <thruDate>2014-06-30 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>5</id>
+    <productId>4809997541118</productId>
+    <amount currency="PHP">21.00</amount>
+    <fromDate>2014-06-01 00:00:00</fromDate>
+    <thruDate>2014-06-30 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>6</id>
+    <productId>4804587775134</productId>
+    <amount currency="PHP">43.00</amount>
+    <fromDate>2014-06-01 00:00:00</fromDate>
+    <thruDate>2014-06-30 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>7</id>
+    <productId>4801111245888</productId>
+    <amount currency="PHP">120.00</amount>
+    <fromDate>2014-06-01 00:00:00</fromDate>
+    <thruDate>2014-06-30 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>8</id>
+    <productId>4803265556809</productId>
+    <amount currency="PHP">14.00</amount>
+    <fromDate>2014-06-01 00:00:00</fromDate>
+    <thruDate>2014-06-30 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>9</id>
+    <productId>4807447855332</productId>
+    <amount currency="PHP">31.00</amount>
+    <fromDate>2014-06-01 00:00:00</fromDate>
+    <thruDate>2014-06-30 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>10</id>
+    <productId>4809987445874</productId>
+    <amount currency="PHP">11.00</amount>
+    <fromDate>2014-06-01 00:00:00</fromDate>
+    <thruDate>2014-06-30 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>11</id>
+    <productId>4807698514672</productId>
+    <amount currency="PHP">60.00</amount>
+    <fromDate>2014-07-01 00:00:00</fromDate>
+    <thruDate>2014-07-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>12</id>
+    <productId>4805279843658</productId>
+    <amount currency="PHP">22.00</amount>
+    <fromDate>2014-07-01 00:00:00</fromDate>
+    <thruDate>2014-07-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>13</id>
+    <productId>4809648741447</productId>
+    <amount currency="PHP">19.50</amount>
+    <fromDate>2014-07-01 00:00:00</fromDate>
+    <thruDate>2014-07-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>14</id>
+    <productId>4806985232565</productId>
+    <amount currency="PHP">24.50</amount>
+    <fromDate>2014-07-01 00:00:00</fromDate>
+    <thruDate>2014-07-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>15</id>
+    <productId>4809997541118</productId>
+    <amount currency="PHP">22.00</amount>
+    <fromDate>2014-07-01 00:00:00</fromDate>
+    <thruDate>2014-07-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>16</id>
+    <productId>4804587775134</productId>
+    <amount currency="PHP">43.00</amount>
+    <fromDate>2014-07-01 00:00:00</fromDate>
+    <thruDate>2014-07-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>17</id>
+    <productId>4801111245888</productId>
+    <amount currency="PHP">123.00</amount>
+    <fromDate>2014-07-01 00:00:00</fromDate>
+    <thruDate>2014-07-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>18</id>
+    <productId>4803265556809</productId>
+    <amount currency="PHP">15.00</amount>
+    <fromDate>2014-07-01 00:00:00</fromDate>
+    <thruDate>2014-07-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>19</id>
+    <productId>4807447855332</productId>
+    <amount currency="PHP">31.00</amount>
+    <fromDate>2014-07-01 00:00:00</fromDate>
+    <thruDate>2014-07-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>20</id>
+    <productId>4809987445874</productId>
+    <amount currency="PHP">12.00</amount>
+    <fromDate>2014-07-01 00:00:00</fromDate>
+    <thruDate>2014-07-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>21</id>
+    <productId>4805279843658</productId>
+    <amount currency="PHP">22.00</amount>
+    <fromDate>2014-08-01 00:00:00</fromDate>
+    <thruDate>2014-08-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>22</id>
+    <productId>4809648741447</productId>
+    <amount currency="PHP">21.00</amount>
+    <fromDate>2014-08-01 00:00:00</fromDate>
+    <thruDate>2014-08-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>23</id>
+    <productId>4809997541118</productId>
+    <amount currency="PHP">21.50</amount>
+    <fromDate>2014-08-01 00:00:00</fromDate>
+    <thruDate>2014-08-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>24</id>
+    <productId>4804587775134</productId>
+    <amount currency="PHP">47.00</amount>
+    <fromDate>2014-08-01 00:00:00</fromDate>
+    <thruDate>2014-08-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>25</id>
+    <productId>4803265556809</productId>
+    <amount currency="PHP">12.00</amount>
+    <fromDate>2014-08-01 00:00:00</fromDate>
+    <thruDate>2014-08-31 23:59:59</thruDate>
+  </price>
+  <price>
+    <id>26</id>
+    <productId>4809987445874</productId>
+    <amount currency="PHP">13.00</amount>
+    <fromDate>2014-08-01 00:00:00</fromDate>
+    <thruDate>2014-08-31 23:59:59</thruDate>
+  </price>
+</priceList>
+

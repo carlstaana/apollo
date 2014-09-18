@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Mon Jul 07 13:08:42 PHT 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0147-0f39-5783-00000419a4d8 
+on database directory /home/apollo/Documents/workspace-ggts-3.5.1.RELEASE/carlstaana/BigJavaDB with class loader sun.misc.Launcher$AppClassLoader@6da21389 
+Loaded from file:/opt/Apache/db-derby-10.10.2.0-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_60-b19
+user.dir=/home/apollo/Documents/workspace-ggts-3.5.1.RELEASE/carlstaana
+os.name=Linux
+os.arch=amd64
+os.version=3.13.0-30-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
