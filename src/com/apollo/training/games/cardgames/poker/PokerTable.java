@@ -213,13 +213,19 @@ public class PokerTable {
 				if (pokerPlayer.getBestHand().ordinal() < highestHand) {
 					highestHand = pokerPlayer.getBestHand().ordinal();
 					winnerPlayer = pokerPlayer;
-				} else if (pokerPlayer.getBestHand().ordinal() == highestHand && pokerPlayer.getHighestRank() > winnerPlayer.getHighestRank()) {
-					highestHand = pokerPlayer.getBestHand().ordinal();
-					winnerPlayer = pokerPlayer;
-				} else if (pokerPlayer.getBestHand().ordinal() == highestHand && pokerPlayer.getHighestRank() == winnerPlayer.getHighestRank()) {
-					// get the highest rank of card in hand
-					winnerPlayer = tieBreaker(winnerPlayer, pokerPlayer);
-				}
+				} else if (pokerPlayer.getBestHand().ordinal() == highestHand) {
+					if (pokerPlayer.getHighestRank() == 1 && winnerPlayer.getHighestRank() != 1) {
+						highestHand = pokerPlayer.getBestHand().ordinal();
+						winnerPlayer = pokerPlayer;
+					} else if (pokerPlayer.getHighestRank() != 1 && winnerPlayer.getHighestRank() != 1) {
+						if (pokerPlayer.getHighestRank() > winnerPlayer.getHighestRank()) {
+							highestHand = pokerPlayer.getBestHand().ordinal();
+							winnerPlayer = pokerPlayer;
+						}
+					} else if (pokerPlayer.getHighestRank() == winnerPlayer.getHighestRank()) {
+						winnerPlayer = tieBreaker(winnerPlayer, pokerPlayer);
+					}
+				} 
 			}
 		}
 		
