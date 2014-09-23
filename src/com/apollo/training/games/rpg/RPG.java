@@ -7,7 +7,7 @@ import java.util.Scanner;
 import com.apollo.training.games.GameFunction;
 import com.apollo.training.games.rpg.Skill.AttackType;
 
-public class RPGGame extends GameFunction {
+public class RPG extends GameFunction {
 	
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
@@ -353,7 +353,8 @@ public class RPGGame extends GameFunction {
 
 
 
-	private static void attackBlockingHero(ArrayList<Monster> monstersList, Hero hero) {
+	private static void attackBlockingHero(ArrayList<Monster> monstersList,
+			Hero hero) {
 		for (int i = 0; i < monstersList.size(); i++) {
 			hero.block(monstersList.get(i), true);
 		}
