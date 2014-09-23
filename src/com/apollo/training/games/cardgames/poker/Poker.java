@@ -80,9 +80,18 @@ public class Poker extends GameFunction {
 		}
 		
 		PokerTable table = new PokerTable(numberOfPlayers, numberOfCpus);
+		delay(1000);
 		
 		boolean isContinue = false;
 		do {
+			clearScreen();
+			System.out.println("Shuffling cards...");
+			delay(1000);
+			clearScreen();
+			System.out.println("Dealing cards...");
+			delay(1000);
+			clearScreen();
+			
 			do {
 				newDeal(table);
 				firstRound(table);
@@ -174,6 +183,9 @@ public class Poker extends GameFunction {
 		do {
 			for (PokerPlayer pokerPlayer : table.getPlayers()) {
 				if (pokerPlayer.getMoney() >= table.getBASE_BET() && !pokerPlayer.isFolded() && (pokerPlayer.getCurrentBet() < table.getHighestBet() || pokerPlayer.getCurrentBet() <= 0)) {
+					if (pokerPlayer.isAi()) {
+						clearScreen();
+					}
 					System.out.println("--\n"
 							+ pokerPlayer.getName() + "'s Turn");
 					delay(1000);
@@ -199,8 +211,8 @@ public class Poker extends GameFunction {
 										+ "[3] Fold\n");
 							} else {
 								System.out.print("What do you want to do?\n"
-									+ "[1] Call "+table.getHighestBet()+"\n" 
-									+ "[2] Raise "+table.getHighestBet()+" + 40\n"
+									+ "[1] Call ("+table.getHighestBet()+")\n" 
+									+ "[2] Raise ("+table.getHighestBet()+" + 40)\n"
 									+ "[3] Fold\n");
 							}
 
@@ -261,7 +273,8 @@ public class Poker extends GameFunction {
 						if (pokerPlayer.getCurrentBet() > 0 || pokerPlayer.getCurrentBet() < table.getHighestBet()) {
 							table.call(pokerPlayer);
 						} else {
-							System.out.println(pokerPlayer.getName() + " checked.");
+							NamePrinter printer = new NamePrinter();
+							printer.print(pokerPlayer.getName() + " checked.");
 						}
 						break;
 					case 2:
@@ -295,6 +308,9 @@ public class Poker extends GameFunction {
 		do {
 			for (PokerPlayer pokerPlayer : table.getPlayers()) {
 				if (pokerPlayer.getMoney() >= table.getBASE_BET() && !pokerPlayer.isFolded() && (pokerPlayer.getCurrentBet() < table.getHighestBet() || pokerPlayer.getCurrentBet() <= 0)) {
+					if (pokerPlayer.isAi()) {
+						clearScreen();
+					}
 					System.out.println("--\n"
 							+ pokerPlayer.getName() + "'s Turn");
 					delay(1000);
@@ -315,8 +331,8 @@ public class Poker extends GameFunction {
 										+ "[3] Fold\n");
 							} else {
 								System.out.print("What do you want to do?\n"
-									+ "[1] Call "+table.getHighestBet()+"\n" 
-									+ "[2] Raise "+table.getHighestBet()+" + 40\n"
+									+ "[1] Call ("+table.getHighestBet()+")\n" 
+									+ "[2] Raise ("+table.getHighestBet()+" + 40)\n"
 									+ "[3] Fold\n");
 							}
 							

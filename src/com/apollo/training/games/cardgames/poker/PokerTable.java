@@ -105,6 +105,7 @@ public class PokerTable {
 	}
 
 	public void call(PokerPlayer pokerPlayer) {
+		NamePrinter printer = new NamePrinter();
 		if (potMoney <= 0 && pokerPlayer.getCurrentBet() <= 0) {
 			potMoney += BASE_BET;
 			pokerPlayer.setCurrentBet(BASE_BET);
@@ -121,10 +122,11 @@ public class PokerTable {
 			}
 		}
 		
-		System.out.println(pokerPlayer.getName() + " called " + pokerPlayer.getCurrentBet());
+		printer.print(pokerPlayer.getName() + " called " + pokerPlayer.getCurrentBet());
 	}
 
 	public void raise(PokerPlayer pokerPlayer) {
+		NamePrinter printer = new NamePrinter();
 		if (potMoney <= 0 && pokerPlayer.getCurrentBet() <= 0) {
 			pokerPlayer.setCurrentBet(BASE_BET + BASE_BET);
 			pokerPlayer.setMoney(pokerPlayer.getMoney() - pokerPlayer.getCurrentBet());
@@ -141,14 +143,15 @@ public class PokerTable {
 			potMoney += pokerPlayer.getCurrentBet();
 		}
 		
-		System.out.println(pokerPlayer.getName() + " raised by 40. "
+		printer.print(pokerPlayer.getName() + " raised by 40.\n"
 				+ "Total bet: " + pokerPlayer.getCurrentBet());
 	}
 
 	public void fold(PokerPlayer pokerPlayer) {
+		NamePrinter printer = new NamePrinter();		
 		pokerPlayer.setFolded(true);
 		
-		System.out.println(pokerPlayer.getName() + " has folded.");
+		printer.print(pokerPlayer.getName() + " has folded.");
 	}
 
 	public void revealInitialCards() {
