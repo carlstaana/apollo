@@ -186,7 +186,12 @@ public class Poker extends GameFunction {
 
 					if (!pokerPlayer.isAi()) {
 						while (!valid) {
+							// show player's hand
 							pokerPlayer.showHand();
+							// show also player's highest attainment
+							PokerLogic pk = new PokerLogic();
+							System.out.println(pk.getBestHand(pokerPlayer, table.getTableCards()));
+							
 							if (pokerPlayer.getCurrentBet() <= 0 && table.getHighestBet() <= 0) {
 								System.out.print("What do you want to do?\n"
 										+ "[1] Check\n" 
