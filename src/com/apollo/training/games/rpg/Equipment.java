@@ -43,7 +43,7 @@ public class Equipment {
 		try {
 			con = DriverManager.getConnection(url, user, password);
 			st = con.createStatement();
-			rs = st.executeQuery("SELECT id FROM equipment WHERE level <= "+(monster.level + 1)+"");
+			rs = st.executeQuery("SELECT id FROM equipment WHERE level <= "+(monster.getLevel() + 1)+"");
 
 			// save the items here
 			ArrayList<Integer> equipmentList = new ArrayList<Integer>();
@@ -250,30 +250,30 @@ public class Equipment {
 	private static void changeStats(Hero hero, Equipment equipment,
 			boolean isIncrease) {
 		if (isIncrease) {
-			hero.lowAtk += equipment.getAtk();
-			hero.highAtk += equipment.getAtk();
-			hero.maxHP += equipment.getHP();
-			hero.health += equipment.getHP();
-			hero.maxMP += equipment.getMP();
-			hero.mana += equipment.getMP();
-			hero.criticalChance += equipment.getCrit();
-			hero.dodgeChance += equipment.getDodge();
-			hero.blockChance += equipment.getBlock();
+			hero.setLowAtk(hero.getLowAtk() + equipment.getAtk());
+			hero.setHighAtk(hero.getHighAtk() + equipment.getAtk());
+			hero.setMaxHP(hero.getMaxHP() + equipment.getHP());
+			hero.setHealth(hero.getHealth() + equipment.getHP());
+			hero.setMaxMP(hero.getMaxMP() + equipment.getMP());
+			hero.setMana(hero.getMana() + equipment.getMP());
+			hero.setCriticalChance(hero.getCriticalChance() + equipment.getCrit());
+			hero.setDodgeChance(hero.getDodgeChance() + equipment.getDodge());
+			hero.setBlockChance(hero.getBlockChance() + equipment.getBlock());
 			
 			addEquipment(hero, equipment);
-			System.out.println(hero.name + " equipped:");
+			System.out.println(hero.getName() + " equipped:");
 			System.out.println(equipment.toString());
 			System.out.println(hero.toString());
 		} else {
-			hero.lowAtk -= equipment.getAtk();
-			hero.highAtk -= equipment.getAtk();
-			hero.maxHP -= equipment.getHP();
-			hero.health -= equipment.getHP();
-			hero.maxMP -= equipment.getMP();
-			hero.mana -= equipment.getMP();
-			hero.criticalChance -= equipment.getCrit();
-			hero.dodgeChance -= equipment.getDodge();
-			hero.blockChance -= equipment.getBlock();
+			hero.setLowAtk(hero.getLowAtk() - equipment.getAtk());
+			hero.setHighAtk(hero.getHighAtk() - equipment.getAtk());
+			hero.setMaxHP(hero.getMaxHP() - equipment.getHP());
+			hero.setHealth(hero.getHealth() - equipment.getHP());
+			hero.setMaxMP(hero.getMaxMP() - equipment.getMP());
+			hero.setMana(hero.getMana() - equipment.getMP());
+			hero.setCriticalChance(hero.getCriticalChance() - equipment.getCrit());
+			hero.setDodgeChance(hero.getDodgeChance() - equipment.getDodge());
+			hero.setBlockChance(hero.getBlockChance() - equipment.getBlock());
 			
 			removeEquipment(hero, equipment);
 		}
@@ -282,51 +282,51 @@ public class Equipment {
 	private static void addEquipment(Hero hero, Equipment equipment) {
 		switch (equipment.getBodyPart()) {
 		case HEAD:
-			hero.head = equipment;
+			hero.setHead(equipment);
 			break;
 		case ARMOR:
-			hero.armor = equipment;
+			hero.setArmor(equipment);
 			break;
 		case PANTS:
-			hero.pants = equipment;
+			hero.setPants(equipment);
 			break;
 		case GLOVES:
-			hero.gloves = equipment;
+			hero.setGloves(equipment);
 			break;
 		case SHOES:
-			hero.shoes = equipment;
+			hero.setShoes(equipment);
 			break;
 		case WEAPON:
-			hero.weapon = equipment;
+			hero.setWeapon(equipment);
 			break;
 		}
 		
-		hero.inventory.decreaseQuantity(equipment.id);
+		hero.getInventory().decreaseQuantity(equipment.id);
 	}
 
 	private static void removeEquipment(Hero hero, Equipment equipment) {
 		switch (equipment.getBodyPart()) {
 		case HEAD:
-			hero.head = null;
+			hero.setHead(null);
 			break;
 		case ARMOR:
-			hero.armor = null;
+			hero.setArmor(null);
 			break;
 		case PANTS:
-			hero.pants = null;
+			hero.setPants(null);
 			break;
 		case GLOVES:
-			hero.gloves = null;
+			hero.setGloves(null);
 			break;
 		case SHOES:
-			hero.shoes = null;
+			hero.setShoes(null);
 			break;
 		case WEAPON:
-			hero.weapon = null;
+			hero.setWeapon(null);
 			break;
 		}
 		
-		hero.inventory.addItem(equipment);
+		hero.getInventory().addItem(equipment);
 	}
 
 	@Override

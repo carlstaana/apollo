@@ -4,56 +4,52 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 import com.apollo.training.games.rpg.Skill.Type;
 
-public class Hero {
+public class Hero extends Character {
 	// hero's statistics
-	public String name;
-	public int health;
-	public int maxHP;
-	public int mana;
-	public int maxMP;
-	public int lowAtk;
-	public int highAtk;
-	public int experience;
-	public int level;
+	private int mana;
+	
+	private int maxMP;
+	
+	private int experience;
+	
 	public int[] expRequired = {200, 500, 750, 1000, 1500, 2000, 3000, 5000, 7500, 10000, 15000, 25000, 50000, 75000, 150000};
-	public double criticalChance;
-	public double dodgeChance;
-	public double blockChance;
+	
+	private double criticalChance;
+	
+	private double dodgeChance;
+	
+	private double blockChance;
 	
 	// hero's skills
 	public ArrayList<Skill> skills = null;
 	SkillSet skillSet = null;
 	
 	// hero's class
-	public HeroClass myClass;
+	private HeroClass myClass;
 	
 	public enum HeroClass{ SWORDSMAN, ARCHER, MAGE, THIEF }
 	
 	// hero's status
-	public HeroStatus status;
+	private HeroStatus status;
 	public int buffDuration;
 	
 	public enum HeroStatus { NONE, FLAME_SHIELD, COUNTER_HELIX, AGILITY_SPURT }
 	
 	// hero's inventory
-	public Inventory inventory;
+	private Inventory inventory;
 	
 	// hero's equipment
-	public Equipment[] body = new Equipment[6];
-	public Equipment head = body[0];
-	public Equipment armor = body[1];
-	public Equipment pants = body[2];
-	public Equipment gloves = body[3];
-	public Equipment shoes = body[4];
-	public Equipment weapon = body[5];
-	
-	// programmatic variables
-	public Random randomizer = new Random();
+	private Equipment[] body = new Equipment[6];
+	private Equipment head = body[0];
+	private Equipment armor = body[1];
+	private Equipment pants = body[2];
+	private Equipment gloves = body[3];
+	private Equipment shoes = body[4];
+	private Equipment weapon = body[5];
 	
 	// skill has been cancelled
 	public boolean cancelledCastingSkill;
@@ -62,13 +58,13 @@ public class Hero {
 	public Skill fireWallCasted;
 	public Skill lastCastedSkillWithEffect;
 	
-	// attack order number
-	public int attackOrderNumber;
-	
 	// target monster id
 	public int targetMonsterId;
 	
+	
+	
 	public Hero(String name, int classNo) throws NumberFormatException {
+		super();
 		// code for selecting the hero class
 		switch (classNo) {
 		case 1:
@@ -87,13 +83,13 @@ public class Hero {
 			throw new NumberFormatException("Error! Try again.");
 		}
 		
-		this.name = name;
+		setName(getName());
 		if (myClass == HeroClass.SWORDSMAN) {
-			maxHP = 350;
+			setMaxHP(350);
 		} else {
-			maxHP = 250;
+			setMaxHP(250);
 		}
-		health = maxHP;
+		setHealth(getMaxHP());
 		if (myClass == HeroClass.MAGE) {
 			maxMP = 200;
 		} else {
@@ -101,13 +97,13 @@ public class Hero {
 		}
 		mana = maxMP;
 		if (myClass == HeroClass.ARCHER) {
-			lowAtk = randomizer.nextInt(10) + 80;
+			setLowAtk(randomizer.nextInt(10) + 80);
 		} else {
-			lowAtk = randomizer.nextInt(10) + 50;
+			setLowAtk(randomizer.nextInt(10) + 50);
 		}
-		highAtk = randomizer.nextInt(20) + 5 + lowAtk;
+		setHighAtk(randomizer.nextInt(20) + 5 + getLowAtk());
 		experience = 0;
-		level = 1;
+		setLevel(1);
 		if (myClass == HeroClass.THIEF) {
 			criticalChance = randomizer.nextDouble() * 5.0;
 			dodgeChance = 10 + randomizer.nextDouble() * 5.0;
@@ -142,21 +138,17 @@ public class Hero {
 
 	@Override
 	public String toString() {
-		System.out.println(name + " [" + myClass + "]");
-		System.out.println("Level: " + level);
+		System.out.println(getName() + " [" + myClass + "]");
+		System.out.println("Level: " + getLevel());
 		System.out.println(displayHP());
 		System.out.println(displayMP());
-		System.out.println("ATK: " + lowAtk + "-" + highAtk);
+		System.out.println("ATK: " + getLowAtk() + "-" + getHighAtk());
 		System.out.println("CRIT: " + round(criticalChance, 2) + "%");
 		System.out.println("DODGE: " + round(dodgeChance, 2) + "%");
 		System.out.println("BLOCK: " + round(blockChance, 2) + "%");
 		return super.toString();
 	}
 	
-	public String displayHP() {
-		return "HP: " + health + "/" + maxHP;
-	}
-
 	public String displayMP() {
 		String output = "MP: " + mana + "/" + maxMP;
 		if (status != HeroStatus.NONE) {
@@ -174,16 +166,15 @@ public class Hero {
 	}
 
 	public void levelUp() {
-		Random random = new Random();
-		experience -= expRequired[level - 1];
-		level++;
+		experience -= expRequired[getLevel() - 1];
+		setLevel(getLevel() + 1);
 		System.out.println("\n---LEVEL UP!!!---");
-		System.out.println(name + " is now Level " + level);
+		System.out.println(getName() + " is now Level " + getLevel());
 		
 		// upgrade stats
-		maxHP += random.nextInt(200) + (10 * level) + 50;
-		health = maxHP;
-		maxMP += random.nextInt(100) + (5 * level) + 20;
+		setMaxHP(getMaxHP() + randomizer.nextInt(200) + (10 * getLevel()) + 50);
+		setHealth(getMaxHP());
+		maxMP += randomizer.nextInt(100) + (5 * getLevel()) + 20;
 		mana = maxMP;
 		
 		// for increasing the attack power
@@ -192,35 +183,35 @@ public class Hero {
 		do {
 			tempLowAtk = 0;
 			tempHighAtk = 0;
-			tempLowAtk = random.nextInt(12 * level) + lowAtk;
-			tempHighAtk = random.nextInt(15 * level) + highAtk;
+			tempLowAtk = randomizer.nextInt(12 * getLevel()) + getLowAtk();
+			tempHighAtk = randomizer.nextInt(15 * getLevel()) + getHighAtk();
 		} while (tempLowAtk >= tempHighAtk);
-		lowAtk = tempLowAtk;
-		highAtk = tempHighAtk;
+		setLowAtk(tempLowAtk);
+		setHighAtk(tempHighAtk);
 		
-		criticalChance += random.nextDouble() * 5.0;
-		dodgeChance += random.nextDouble() * 5.0;
-		blockChance += random.nextDouble() * 10.0;
+		criticalChance += randomizer.nextDouble() * 5.0;
+		dodgeChance += randomizer.nextDouble() * 5.0;
+		blockChance += randomizer.nextDouble() * 10.0;
 
 		toString();
 		
 		// check also if there are available skills
 		for (Skill skill : skills) {
-			if (skill.levelRequired == level) {
-				System.out.println("\nYou have learned: " + skill.name + " [" + skill.skillType + "]");
-				System.out.println(skill.description);
-				if (skill.skillType == Type.ACTIVE) {
-					System.out.println("Base Damage: " + skill.damage + "; MP Cost: " + skill.mpCost);
+			if (skill.getLevelRequired() == getLevel()) {
+				System.out.println("\nYou have learned: " + skill.getName() + " [" + skill.getSkillType() + "]");
+				System.out.println(skill.getDescription());
+				if (skill.getSkillType() == Type.ACTIVE) {
+					System.out.println("Base Damage: " + skill.getDamage() + "; MP Cost: " + skill.getMpCost());
 				}
 			}
 		}
 		
-		if (myClass == HeroClass.SWORDSMAN && level == 3) {
+		if (myClass == HeroClass.SWORDSMAN && getLevel() == 3) {
 			// activate passive skill
 			status = HeroStatus.COUNTER_HELIX;
 		}
 		
-		if (myClass == HeroClass.THIEF && level == 4) {
+		if (myClass == HeroClass.THIEF && getLevel() == 4) {
 			status = HeroStatus.AGILITY_SPURT;
 		}
 	}
@@ -232,7 +223,7 @@ public class Hero {
 		int chosenSkill = 0;
 		boolean valid;
 		for (Skill skill : skills) {
-			if (skill.levelRequired <= level && mana >= skill.mpCost && skill.skillType == Type.ACTIVE) {
+			if (skill.getLevelRequired() <= getLevel() && mana >= skill.getMpCost() && skill.getSkillType() == Type.ACTIVE) {
 				availableSkills.add(skill);
 			}
 		}
@@ -246,7 +237,7 @@ public class Hero {
 			while (!valid) {
 				System.out.println("\nSelect Skills below:");
 				for (int i = 0; i < availableSkills.size(); i++) {
-					System.out.println("["+ (i+1) +"] " + availableSkills.get(i).name + " MP: " + availableSkills.get(i).mpCost);
+					System.out.println("["+ (i+1) +"] " + availableSkills.get(i).getName() + " MP: " + availableSkills.get(i).getMpCost());
 				}
 				System.out.println("[0] CANCEL");
 				input = in.nextLine();
@@ -275,82 +266,96 @@ public class Hero {
 	}
 
 	public void attack(Monster target) {
-		Random random = new Random();
 		int damage;
 		
-		damage = random.nextInt((highAtk - lowAtk) + 1) + lowAtk;
+		damage = getNormalDamage();
 		if (chanceIsEnabled(criticalChance)) {
 			damage = damage * 2;
-			target.health -= damage;
-			System.out.println(name + " dealt " + damage + " damage!!! to " + target.name);
+			System.out.println(getName() + " dealt " + damage + " damage!!! to " + target.getName());
 		} else {
-			target.health -= damage;
-			System.out.println(name + " dealt " + damage + " damage to " + target.name);
+			System.out.println(getName() + " dealt " + damage + " damage to " + target.getName());
 		}
+		target.decreaseHP(damage);
 		
 		if (myClass == HeroClass.THIEF) {
 			// Lifesteal
-			double lifeStealPercentage = 10 + (5 * level);
-			int stealChance = 20 + (5 * level);
+			double lifeStealPercentage = 10 + (5 * getLevel());
+			int stealChance = 20 + (5 * getLevel());
 			int lifeStealed = (int) ((lifeStealPercentage / 100.0) * damage);
 			
 			if (chanceIsEnabled(stealChance)) {
-				System.out.println(name + " steals " + lifeStealed + " HP");
-				health += lifeStealed;
-				if (health > maxHP) {
-					health = maxHP;
-				}
+				System.out.println(getName() + " steals " + lifeStealed + " HP");
+				increaseHP(lifeStealed);
 			}
 		}
 	}
 
-	public boolean chanceIsEnabled(double chancePercentage) {
-		Random random = new Random();
-		double output = random.nextDouble() * 100;
-		if (output <= chancePercentage) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	public void skillAttack(Skill usedSkill, Monster target) {
-		Random random = new Random();
+//		--LIST OF ALL SKILLS--
+//		+----+-----------------+
+//		| id | name            |
+//		+----+-----------------+
+//		|  1 | Bash            |
+//		|  2 | Fireball        |
+//		|  3 | Magnum Break    |
+//		|  4 | Fireball 2      |
+//		|  5 | Magnum Break 2  |
+//		|  6 | Double Strafe   |
+//		|  7 | Arrow Shower    |
+//		|  8 | Double Strafe 2 |
+//		|  9 | Arrow Shower 2  |
+//		| 10 | Fireball        |
+//		| 11 | Fire Wall       |
+//		| 12 | Fireball 2      |
+//		| 13 | Fire Wall 2     |
+//		| 14 | Poison Stab     |
+//		| 15 | Throat Slice    |
+//		| 16 | Poison Stab 2   |
+//		| 17 | Throat Slice 2  |
+//		| 18 | Counter Helix   |
+//		| 19 | Agility Spurt   |
+//		| 20 | Blade Fury      |
+//		| 21 | Multi-shot      |
+//		| 22 | Fire Wave       |
+//		| 23 | Dagger Throw    |
+//		+----+-----------------+
+
 		int damage = 0;
 		
-		System.out.println(name + " casts " + usedSkill.name);
-		mana -= usedSkill.mpCost;
-		if (chanceIsEnabled(usedSkill.accuracy)) {
+		System.out.println(getName() + " casts " + usedSkill.getName());
+		decreaseMP(usedSkill.getMpCost());
+		if (chanceIsEnabled(usedSkill.getAccuracy())) {
 			// special conditions for double strafe and double strafe 2
-			if (usedSkill.name.equalsIgnoreCase("Double Strafe") || usedSkill.name.equalsIgnoreCase("Double Strafe 2")) {
-				if (usedSkill.name.equalsIgnoreCase("Double Strafe")) {
-					damage = ((random.nextInt((highAtk - lowAtk) + 1) + lowAtk) * 2) + random.nextInt(level * 10);
+			if (usedSkill.getId() == 6 || usedSkill.getId() == 8) {
+				if (usedSkill.getId() == 6) {
+					damage = (getNormalDamage() * 2) + randomizer.nextInt(getLevel() * 10);
 				} else {
-					damage = ((random.nextInt((highAtk - lowAtk) + 1) + lowAtk) * 3) + random.nextInt(level * 10);
+					damage = (getNormalDamage() * 3) + randomizer.nextInt(getLevel() * 10);
 				}
+				
 				if (chanceIsEnabled(criticalChance)) {
 					damage = damage * 2;
-					System.out.println(name + " dealt " + damage + " damage to " + target.name + "!!!");
+					System.out.println(getName() + " dealt " + damage + " damage to " + target.getName() + "!!!");
 				} else {
-					System.out.println(name + " dealt " + damage + " damage to " + target.name + ".");
+					System.out.println(getName() + " dealt " + damage + " damage to " + target.getName() + ".");
 				}
-			} else if (usedSkill.name.equalsIgnoreCase("Arrow Shower") || usedSkill.name.equalsIgnoreCase("Arrow Shower 2")) {
+			} else if (usedSkill.getId() == 7 || usedSkill.getId() == 9) {
 				int attackRepetition = 0;
-				if (usedSkill.name.equalsIgnoreCase("Arrow Shower")) {
+				if (usedSkill.getId() == 7) {
 					attackRepetition = 5;
 				} else {
 					attackRepetition = 8;
 				}
 				
-				System.out.print(name + " dealts... ");
+				System.out.print(getName() + " dealts... ");
 				int totalDamage = 0;
 				for (int i = attackRepetition; i > 0; i--) {
+					damage = getNormalDamage();
+					System.out.print(damage);
+					
 					if (chanceIsEnabled(criticalChance)) {
 						damage = damage * 2;
-						System.out.print(damage + "!!");
-					} else {
-						damage = random.nextInt((highAtk - lowAtk) + 1) + lowAtk;
-						System.out.print(damage);
+						System.out.print("!!");
 					}
 					
 					if (i > 1) {
@@ -362,73 +367,79 @@ public class Hero {
 				}
 				System.out.println(totalDamage + " damage");
 				damage = totalDamage;
-			} else if (usedSkill.name.equalsIgnoreCase("Throat Slice") || usedSkill.name.equalsIgnoreCase("Throat Slice 2")) {
+			} else if (usedSkill.getId() == 15 || usedSkill.getId() == 17) {
 				int instantKillChance;
-				if (usedSkill.name.equalsIgnoreCase("Throat Slice")) {
-					instantKillChance = level;
+				if (usedSkill.getId() == 15) {
+					instantKillChance = getLevel();
 				} else {
-					instantKillChance = 2 * level;
+					instantKillChance = 2 * getLevel();
 				}
 				
 				if (chanceIsEnabled(instantKillChance)) {
-					target.health = 0;
+					target.setHealth(0);
 					System.out.println("INSTANT DEATH!!");
 				} else {
-					damage = usedSkill.damage + random.nextInt(level * 10);
-					System.out.println(name + " dealt " + damage + " damage to " + target.name + ".");
+					damage = usedSkill.getDamage() + randomizer.nextInt(getLevel() * 10);
+					System.out.println(getName() + " dealt " + damage + " damage to " + target.getName() + ".");
 				}
 			} else {
-				if (usedSkill.name.equalsIgnoreCase("Fire Wall") || usedSkill.name.equalsIgnoreCase("Fire Wall 2")) {
+				if (usedSkill.getId() == 11 || usedSkill.getId() == 13) {
 					// activate FLAME SHIELD!
 					System.out.println(HeroStatus.FLAME_SHIELD + " activated!");
 					status = HeroStatus.FLAME_SHIELD;
 					fireWallCasted = usedSkill;
-				} else if (usedSkill.name.equalsIgnoreCase("Counter Helix")) {
+				} else if (usedSkill.getId() == 18) {
 					// activate COUNTER HELIX!
 					System.out.println(HeroStatus.COUNTER_HELIX + " activated!");
 					status = HeroStatus.COUNTER_HELIX;
 					buffDuration = 3;
 				}
-				damage = usedSkill.damage + random.nextInt(level * 10);
-				System.out.println(name + " dealt " + damage + " damage to " + target.name + ".");
+				damage = usedSkill.getDamage() + randomizer.nextInt(getLevel() * 10);
+				System.out.println(getName() + " dealt " + damage + " damage to " + target.getName() + ".");
 			}
 			
 			// check if the skill has an effect
-			if (usedSkill.hasEffect() && !(usedSkill.name.equalsIgnoreCase("Fire Wall") || usedSkill.name.equalsIgnoreCase("Fire Wall 2"))) {
+			if (usedSkill.hasEffect() && !(usedSkill.getId() == 11 || usedSkill.getId() == 13)) {
 				// check if effect kicks in the skill
-				double improvedEffectChance = usedSkill.effectChance + (5 * level);
+				double improvedEffectChance = usedSkill.getEffectChance() + (5 * getLevel());
 				if (chanceIsEnabled(improvedEffectChance)) {
 					lastCastedSkillWithEffect = usedSkill;
 					// check if the effect of the skill is already felt by the target
-					if (target.hasThisBuff(usedSkill.effectToTarget)) {
-						int equalBuff = target.getEqualBuff(usedSkill.effectToTarget);
+					if (target.hasThisBuff(usedSkill.getEffectToTarget())) {
+						int equalBuff = target.getEqualBuff(usedSkill.getEffectToTarget());
 						// refresh duration to 3 turns
 						target.refreshBuffDuration(equalBuff);
 					} else {
-						target.addNewBuff(usedSkill.effectToTarget, 3);
+						target.addNewBuff(usedSkill.getEffectToTarget(), 3);
 					}
-					System.out.println(target.name + " is " + usedSkill.effectToTarget);
+					System.out.println(target.getName() + " is " + usedSkill.getEffectToTarget());
 				}
 			}
 			
-			target.health -= damage;
+			target.decreaseHP(damage);
 		} else {
 			System.out.println("...Casting failed...");
 		}		
 	}
 
+	private void decreaseMP(int mpCost) {
+		mana -= mpCost;
+		if (mana < 0) {
+			mana = 0;
+		}
+	}
+
 	public void skillAttackAll(Skill skill, ArrayList<Monster> monsterList) {
-		Random random = new Random();
 		int damage = 0;
 		
-		System.out.println(name + " casts " + skill.name);
-		mana -= skill.mpCost;
-		if (chanceIsEnabled(skill.accuracy)) {
+		System.out.println(getName() + " casts " + skill.getName());
+		decreaseMP(skill.getMpCost());
+		if (chanceIsEnabled(skill.getAccuracy())) {
 			// attack all the monsters
 			for (Monster monster : monsterList) {
-				damage = skill.damage + random.nextInt(10 * level);
-				System.out.println(name + " dealt " + damage + " damage to " + monster.name);
-				monster.health -= damage;
+				damage = skill.getDamage() + randomizer.nextInt(10 * getLevel());
+				System.out.println(getName() + " dealt " + damage + " damage to " + monster.getName());
+				monster.decreaseHP(damage);
 			}
 		} else {
 			System.out.println("...Casting failed...");
@@ -436,24 +447,23 @@ public class Hero {
 	}
 	
 	public void block(Monster monster, boolean blockSelected) {
-		Random random = new Random();
 		int damage;
 		double improvedBlockChance;
 		
 		if (blockSelected) {
-			System.out.println(name + " tries to block...");
-			improvedBlockChance = blockChance + (random.nextDouble() * (5 * level));
+			System.out.println(getName() + " tries to block...");
+			improvedBlockChance = blockChance + (randomizer.nextDouble() * (5 * getLevel()));
 		} else {
 			improvedBlockChance = blockChance;
 		}
 		
-		damage = random.nextInt((monster.highAtk - monster.lowAtk) + 1) + monster.lowAtk;
+		damage = monster.getNormalDamage();
 		
 		if (chanceIsEnabled(improvedBlockChance)) {
-			System.out.println(name + " successfully blocked!");
+			System.out.println(getName() + " successfully blocked!");
 		} else {
-			health -= damage;
-			System.out.println(monster.name + "'s attack pushed through your block. " + monster.name + " dealts " + damage + " damage.");
+			decreaseHP(damage);
+			System.out.println(monster.getName() + "'s attack pushed through your block. " + monster.getName() + " dealts " + damage + " damage.");
 		}
 		
 		if (!isDead()) {
@@ -463,21 +473,21 @@ public class Hero {
 
 	public boolean flee(ArrayList<Monster> monstersList) {
 		boolean fleeSuccess = false;
-		System.out.println(name + " tries to flee...");
+		System.out.println(getName() + " tries to flee...");
 		
 		boolean hasGreaterLevelThanYou = false;
 		int currentHighestLevel = 0;
 		Monster highestLevelMonster = null;
 		
 		for (int i = 0; i < monstersList.size(); i++) {
-			if (monstersList.get(i).level > currentHighestLevel) {
+			if (monstersList.get(i).getLevel() > currentHighestLevel) {
 				highestLevelMonster = monstersList.get(i);
-				currentHighestLevel = highestLevelMonster.level;
+				currentHighestLevel = highestLevelMonster.getLevel();
 			}
 		}
 		
 		for (int i = 0; i < monstersList.size(); i++) {
-			if (level < monstersList.get(i).level) {
+			if (getLevel() < monstersList.get(i).getLevel()) {
 				hasGreaterLevelThanYou = true;
 				break;
 			}
@@ -486,7 +496,7 @@ public class Hero {
 		if (hasGreaterLevelThanYou) {
 			fleeSuccess = Math.random() < 0.5;
 		} else {
-			double fleeChance = 80 + ((level - highestLevelMonster.level) * 2);
+			double fleeChance = 80 + ((getLevel() - highestLevelMonster.getLevel()) * 2);
 			if (chanceIsEnabled(fleeChance)) {
 				fleeSuccess = true;
 			} else {
@@ -498,7 +508,7 @@ public class Hero {
 			if (monstersList.size() > 1) {
 				System.out.println("You can't escape from the monsters");
 			} else {
-				System.out.println("You can't escape from " + monstersList.get(0).name);
+				System.out.println("You can't escape from " + monstersList.get(0).getName());
 			}
 			
 			for (int i = 0; i < monstersList.size(); i++) {
@@ -513,25 +523,16 @@ public class Hero {
 		return fleeSuccess;
 	}
 
-	public boolean isDead() {
-		if (health <= 0) {
-			return true;
-		} else {
-			return false;
-		}
+	public void regenerateHpAndMp() {
+		int hpRegen = randomizer.nextInt(10 * getLevel());
+		int mpRegen = randomizer.nextInt(5 * getLevel());
+		
+		increaseHP(hpRegen);
+		increaseMP(mpRegen);
 	}
 
-	public void regenerateHpAndMp() {
-		Random random = new Random();
-		int hpRegen = random.nextInt(10 * level);
-		int mpRegen = random.nextInt(5 * level);
-		
-		health += hpRegen;
+	private void increaseMP(int mpRegen) {
 		mana += mpRegen;
-		
-		if (health > maxHP) {
-			health = maxHP;
-		}
 		
 		if (mana > maxMP) {
 			mana = maxMP;
@@ -565,22 +566,15 @@ public class Hero {
 							throw new NumberFormatException();
 						} else if (itemNumber > 0) {
 							// use the selected item and deduct its quantity
-							System.out.println(name + " used " + itemOnlyList.get(itemNumber-1).getName());
-							health += itemOnlyList.get(itemNumber-1).getHealthBoost();
-							mana += itemOnlyList.get(itemNumber-1).getManaBoost();
+							System.out.println(getName() + " used " + itemOnlyList.get(itemNumber-1).getName());
+							increaseHP(itemOnlyList.get(itemNumber-1).getHealthBoost());
+							increaseMP(itemOnlyList.get(itemNumber-1).getManaBoost());
 
 							if (itemOnlyList.get(itemNumber-1).getHealthBoost() > 0) {
-								System.out.println(name + " recovered " + itemOnlyList.get(itemNumber-1).getHealthBoost() + " HP: " + displayHP());
+								System.out.println(getName() + " recovered " + itemOnlyList.get(itemNumber-1).getHealthBoost() + " HP: " + displayHP());
 							}
 							if (itemOnlyList.get(itemNumber-1).getManaBoost() > 0) {
-								System.out.println(name + " recovered " + itemOnlyList.get(itemNumber-1).getManaBoost() + " MP" + displayMP());
-							}
-
-							if (health > maxHP) {
-								health = maxHP;
-							}
-							if (mana > maxMP) {
-								mana = maxMP;
+								System.out.println(getName() + " recovered " + itemOnlyList.get(itemNumber-1).getManaBoost() + " MP" + displayMP());
 							}
 
 							// decrease the number of the item selected in the inventory
@@ -702,8 +696,136 @@ public class Hero {
 	}
 	
 	public Object getItemDrop(Monster monster) {
-		inventory.addItem(monster.itemDrop);
-		return monster.itemDrop;
+		inventory.addItem(monster.getItemDrop());
+		return monster.getItemDrop();
+	}
+
+	public int getMana() {
+		return mana;
+	}
+
+	public void setMana(int mana) {
+		this.mana = mana;
+	}
+
+	public int getMaxMP() {
+		return maxMP;
+	}
+
+	public void setMaxMP(int maxMP) {
+		this.maxMP = maxMP;
+	}
+
+	public int getExperience() {
+		return experience;
+	}
+
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+
+	public double getCriticalChance() {
+		return criticalChance;
+	}
+
+	public void setCriticalChance(double criticalChance) {
+		this.criticalChance = criticalChance;
+	}
+
+	public double getDodgeChance() {
+		return dodgeChance;
+	}
+
+	public void setDodgeChance(double dodgeChance) {
+		this.dodgeChance = dodgeChance;
+	}
+
+	public double getBlockChance() {
+		return blockChance;
+	}
+
+	public void setBlockChance(double blockChance) {
+		this.blockChance = blockChance;
+	}
+
+	public HeroClass getMyClass() {
+		return myClass;
+	}
+
+	public void setMyClass(HeroClass myClass) {
+		this.myClass = myClass;
+	}
+
+	public HeroStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(HeroStatus status) {
+		this.status = status;
+	}
+
+	public Inventory getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
+	}
+
+	public Equipment[] getBody() {
+		return body;
+	}
+
+	public void setBody(Equipment[] body) {
+		this.body = body;
+	}
+
+	public Equipment getHead() {
+		return head;
+	}
+
+	public void setHead(Equipment head) {
+		this.head = head;
+	}
+
+	public Equipment getArmor() {
+		return armor;
+	}
+
+	public void setArmor(Equipment armor) {
+		this.armor = armor;
+	}
+
+	public Equipment getPants() {
+		return pants;
+	}
+
+	public void setPants(Equipment pants) {
+		this.pants = pants;
+	}
+
+	public Equipment getGloves() {
+		return gloves;
+	}
+
+	public void setGloves(Equipment gloves) {
+		this.gloves = gloves;
+	}
+
+	public Equipment getShoes() {
+		return shoes;
+	}
+
+	public void setShoes(Equipment shoes) {
+		this.shoes = shoes;
+	}
+
+	public Equipment getWeapon() {
+		return weapon;
+	}
+
+	public void setWeapon(Equipment weapon) {
+		this.weapon = weapon;
 	}
 
 	

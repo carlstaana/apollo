@@ -63,7 +63,7 @@ public class RPG extends GameFunction {
 				for (int i = 0; i < 3 ; i++) {
 					Monster monster = new Monster(hero);
 					monstersList.add(monster);
-					if (monster.level > hero.level - i - 1) {
+					if (monster.getLevel() > hero.getLevel() - i - 1) {
 						break;
 					} else {
 						continue;
@@ -75,9 +75,9 @@ public class RPG extends GameFunction {
 					valid = false;
 					while (!valid) {
 						System.out.println();
-						System.out.print(hero.name + ": ["+hero.myClass+" LVL: "+hero.level+"] " + hero.displayHP() + " " + hero.displayMP() + "\tVS.\t");
+						System.out.print(hero.getName() + ": ["+hero.getMyClass()+" LVL: "+hero.getLevel()+"] " + hero.displayHP() + " " + hero.displayMP() + "\tVS.\t");
 						for (int i = 0; i < monstersList.size(); i++) {
-							System.out.print(monstersList.get(i).name + " [LVL: "+monstersList.get(i).level+"]: " + monstersList.get(i).displayHP() + " | ");
+							System.out.print(monstersList.get(i).getName() + " [LVL: "+monstersList.get(i).getLevel()+"]: " + monstersList.get(i).displayHP() + " | ");
 						}
 						System.out.println("\nWhat are you going to do?\n"
 								+ "[1] Attack\n"
@@ -109,7 +109,7 @@ public class RPG extends GameFunction {
 							if (monstersList.size() > 1) {
 								System.out.println("Choose the number of the monster you want to target");
 								for (int i = 0; i < monstersList.size(); i++) {
-									System.out.println("[" + (i+1) + "] " + monstersList.get(i).name + ": " + monstersList.get(i).displayHP());
+									System.out.println("[" + (i+1) + "] " + monstersList.get(i).getName() + ": " + monstersList.get(i).displayHP());
 								}
 								System.out.println("[0] CANCEL");
 								input = in.nextLine();
@@ -126,7 +126,7 @@ public class RPG extends GameFunction {
 										throw new NumberFormatException();
 									}
 									valid = true;
-									hero.targetMonsterId = monstersList.get(monsterSelector-1).id;
+									hero.targetMonsterId = monstersList.get(monsterSelector-1).getId();
 								} catch (NumberFormatException e) {
 									System.out.println("Error input! Try again.");
 									continue;
@@ -138,9 +138,9 @@ public class RPG extends GameFunction {
 
 						if (!input.contains("0")) {
 							// get the attack order, simulate the attack
-							ArrayList<Object> attackOrderList = getAttackOrder(hero, monstersList);
+							ArrayList<Character> attackOrderList = getAttackOrder(hero, monstersList);
 							Skill nullSkill = new Skill();
-							nullSkill.name = "null";
+							nullSkill.setName("null");
 							startAttack(attackOrderList, hero, nullSkill);
 						}
 						break;
@@ -149,7 +149,7 @@ public class RPG extends GameFunction {
 
 						if (!hero.cancelledCastingSkill) {
 							if (skill != null) {
-								if (skill.atkType == AttackType.SINGLE) {
+								if (skill.getAtkType() == AttackType.SINGLE) {
 									// select a target monster
 									valid = false;
 									while (!valid) {
@@ -157,7 +157,7 @@ public class RPG extends GameFunction {
 										if (monstersList.size() > 1) {
 											System.out.println("Select monster to target:");
 											for (int i = 0; i < monstersList.size(); i++) {
-												System.out.println("[" + (i+1) + "] " + monstersList.get(i).name + ": " + monstersList.get(i).displayHP());
+												System.out.println("[" + (i+1) + "] " + monstersList.get(i).getName() + ": " + monstersList.get(i).displayHP());
 											}
 											System.out.println("[0] CANCEL");
 											input = in.nextLine();
@@ -174,7 +174,7 @@ public class RPG extends GameFunction {
 													throw new NumberFormatException();
 												}
 												valid = true;
-												hero.targetMonsterId = monstersList.get(monsterSelector-1).id;
+												hero.targetMonsterId = monstersList.get(monsterSelector-1).getId();
 											} catch (NumberFormatException e) {
 												System.out.println("Error input! Try again.");
 												continue;
@@ -188,7 +188,7 @@ public class RPG extends GameFunction {
 								}
 					
 								if (!input.contains("0")) {
-									ArrayList<Object> skillAttackOrder = getAttackOrder(hero, monstersList);
+									ArrayList<Character> skillAttackOrder = getAttackOrder(hero, monstersList);
 									startAttack(skillAttackOrder, hero, skill);
 								}
 							} else {
@@ -265,11 +265,11 @@ public class RPG extends GameFunction {
 
 
 
-	private static ArrayList<Object> getAttackOrder(Hero hero, ArrayList<Monster> monstersList) {
-		ArrayList<Object> resultList = new ArrayList<Object>();
+	private static ArrayList<Character> getAttackOrder(Hero hero, ArrayList<Monster> monstersList) {
+		ArrayList<Character> resultList = new ArrayList<Character>();
 		boolean hasGreaterLevelThanHero = false;
 		for (int i = 0; i < monstersList.size(); i++) {
-			if (monstersList.get(i).level > hero.level) {
+			if (monstersList.get(i).getLevel() > hero.getLevel()) {
 				hasGreaterLevelThanHero = true;
 			}
 		}
@@ -292,7 +292,7 @@ public class RPG extends GameFunction {
 		return resultList;
 	}
 
-	private static void startAttack(ArrayList<Object> attackOrderList, Hero hero, Skill skill) {
+	private static void startAttack(ArrayList<Character> attackOrderList, Hero hero, Skill skill) {
 		for (int i = 0; i < attackOrderList.size(); i++) {
 			Object selectedObj = attackOrderList.get(i);
 
@@ -310,14 +310,14 @@ public class RPG extends GameFunction {
 						Object targetMonster = attackOrderList.get(j);
 						if (targetMonster instanceof Monster) {
 							Monster tempMonster = (Monster) targetMonster;
-							if (tempMonster.id == hero.targetMonsterId) {
+							if (tempMonster.getId() == hero.targetMonsterId) {
 								target = (Monster) tempMonster;
 								break;
 							}
 						}
 					}
 					if (!hero.isDead()) {
-						if (!skill.name.equalsIgnoreCase("null")) {
+						if (!skill.getName().equalsIgnoreCase("null")) {
 							hero.skillAttack(skill, target);
 						} else {
 							hero.attack(target);
@@ -340,7 +340,7 @@ public class RPG extends GameFunction {
 	}
 	
 	private static ArrayList<Monster> getMonsters(
-			ArrayList<Object> attackOrderList) {
+			ArrayList<Character> attackOrderList) {
 		ArrayList<Monster> monsters = new ArrayList<Monster>();
 		
 		for (Object selectedObj : attackOrderList) {
@@ -364,17 +364,17 @@ public class RPG extends GameFunction {
 	}
 	
 	private static void getExp(Monster monster, Hero hero) {
-		System.out.println(monster.name + " is dead.");
+		System.out.println(monster.getName() + " is dead.");
 		delay(500);
-		int tempExperience = hero.experience + monster.experienceDrop;
-		double percentage = ((double) tempExperience / hero.expRequired[hero.level - 1]) * 100.0;
-		System.out.println(hero.name + " gains " + monster.experienceDrop + " EXP [" + tempExperience + "/" + hero.expRequired[hero.level - 1] + "] " + hero.round(percentage, 1) + "%");
+		int tempExperience = hero.getExperience() + monster.getExperienceDrop();
+		double percentage = ((double) tempExperience / hero.expRequired[hero.getLevel() - 1]) * 100.0;
+		System.out.println(hero.getName() + " gains " + monster.getExperienceDrop() + " EXP [" + tempExperience + "/" + hero.expRequired[hero.getLevel() - 1] + "] " + hero.round(percentage, 1) + "%");
 		delay(500);
-		hero.experience += monster.experienceDrop;
+		hero.setExperience(hero.getExperience() + monster.getExperienceDrop());
 		// get the item if it exists
-		if (monster.itemDrop != null) {
+		if (monster.getItemDrop() != null) {
 			Object drop = hero.getItemDrop(monster);
-			System.out.print(hero.name + " got new ");
+			System.out.print(hero.getName() + " got new ");
 			if (drop instanceof Items) {
 				Items tempItem = (Items) drop;
 				System.out.println("Item: " + tempItem.getName());
@@ -385,7 +385,7 @@ public class RPG extends GameFunction {
 			delay(1000);
 		}
 		// check if the hero will level up
-		while (hero.experience >= hero.expRequired[hero.level - 1]) {
+		while (hero.getExperience() >= hero.expRequired[hero.getLevel() - 1]) {
 			hero.levelUp();		
 			delay(2000);
 		}

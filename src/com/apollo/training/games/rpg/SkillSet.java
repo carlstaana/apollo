@@ -46,42 +46,43 @@ public class SkillSet {
 		while (rs.next()) {
 			// get the skills
 			Skill selectedSkill = new Skill();
-			selectedSkill.name = rs.getString("name");
+			selectedSkill.setId(rs.getInt("id"));
+			selectedSkill.setName(rs.getString("name"));
 			switch (rs.getString("type")) {
 			case "swordsman":
-				selectedSkill.type = HeroClass.SWORDSMAN;
+				selectedSkill.setType(HeroClass.SWORDSMAN);
 				break;
 			case "archer":
-				selectedSkill.type = HeroClass.ARCHER;
+				selectedSkill.setType(HeroClass.ARCHER);
 				break;
 			case "mage":
-				selectedSkill.type = HeroClass.MAGE;
+				selectedSkill.setType(HeroClass.MAGE);
 				break;
 			case "thief":
-				selectedSkill.type = HeroClass.THIEF;
+				selectedSkill.setType(HeroClass.THIEF);
 				break;
 			}
 			switch (rs.getString("skill_type")) {
 			case "active":
-				selectedSkill.skillType = Type.ACTIVE;
+				selectedSkill.setSkillType(Type.ACTIVE);
 				break;
 			case "passive":
-				selectedSkill.skillType = Type.PASSIVE;
+				selectedSkill.setSkillType(Type.PASSIVE);
 				break;
 			}
-			selectedSkill.damage = rs.getInt("damage");
-			selectedSkill.accuracy = rs.getInt("accuracy");
-			selectedSkill.levelRequired = rs.getInt("level_required");
-			selectedSkill.mpCost = rs.getInt("mp_cost");
-			selectedSkill.description = rs.getString("description");
+			selectedSkill.setDamage(rs.getInt("damage"));
+			selectedSkill.setAccuracy(rs.getInt("accuracy"));
+			selectedSkill.setLevelRequired(rs.getInt("level_required"));
+			selectedSkill.setMpCost(rs.getInt("mp_cost"));
+			selectedSkill.setDescription(rs.getString("description"));
 			// single, all
 			try {
 				switch (rs.getString("attack_type")) {
 				case "single":
-					selectedSkill.atkType = AttackType.SINGLE;
+					selectedSkill.setAtkType(AttackType.SINGLE);
 					break;
 				case "all":
-					selectedSkill.atkType = AttackType.ALL;
+					selectedSkill.setAtkType(AttackType.ALL);
 					break;
 				}
 			} catch (NullPointerException e) {
@@ -92,21 +93,21 @@ public class SkillSet {
 			try {
 				switch (rs.getString("effect")) {
 				case "burn":
-					selectedSkill.effectToTarget = Status.BURNED;
+					selectedSkill.setEffectToTarget(Status.BURNED);
 					break;
 				case "stun":
-					selectedSkill.effectToTarget = Status.STUNNED;
+					selectedSkill.setEffectToTarget(Status.STUNNED);
 					break;
 				case "poison":
-					selectedSkill.effectToTarget = Status.POISONED;			
+					selectedSkill.setEffectToTarget(Status.POISONED);			
 					break;
 				}
 			} catch (NullPointerException e) {
 				
 			}
 			
-			selectedSkill.duration = rs.getInt("duration");
-			selectedSkill.effectChance = rs.getInt("effect_chance");
+			selectedSkill.setDuration(rs.getInt("duration"));
+			selectedSkill.setEffectChance(rs.getInt("effect_chance"));
 			// add to arrayList
 			skills.add(selectedSkill);
 		}

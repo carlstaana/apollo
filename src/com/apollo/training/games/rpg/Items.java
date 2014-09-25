@@ -31,7 +31,7 @@ public class Items {
 		try {
 			con = DriverManager.getConnection(url, user, password);
 			st = con.createStatement();
-			rs = st.executeQuery("SELECT id FROM items WHERE level <= "+(monster.level + 1)+"");
+			rs = st.executeQuery("SELECT id FROM items WHERE level <= "+(monster.getLevel() + 1)+"");
 			
 			// save the items here
 			ArrayList<Integer> itemsList = new ArrayList<Integer>();

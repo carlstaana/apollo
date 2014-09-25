@@ -15,7 +15,7 @@ public class ItemsTests {
 		Items item = new Items();
 		Hero hero = new Hero("Carl", 1);
 		Monster monster = new Monster(hero);
-		item = (Items) monster.itemDrop;
+		item = (Items) monster.getItemDrop();
 		assertNotNull(item);
 	}
 
