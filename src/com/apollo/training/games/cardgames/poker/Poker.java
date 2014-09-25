@@ -240,6 +240,14 @@ public class Poker extends GameFunction {
 							}
 						}
 					} else {
+						if (table.getPlayers().get(0).isFolded()) {
+							// show also player's highest attainment
+							PokerLogic pk = new PokerLogic();
+							System.out.println("["+pk.getBestHand(pokerPlayer, table.getTableCards())+"]");
+							pokerPlayer.showHand();
+							delay(1500);
+						}
+								
 						// AI module for choosing
 						Random random = new Random();
 						double chance = random.nextDouble() * 100;
@@ -360,6 +368,11 @@ public class Poker extends GameFunction {
 							}
 						}
 					} else {
+						if (table.getPlayers().get(0).isFolded()) {
+							pokerPlayer.showHand();
+							delay(1000);
+						}
+						
 						// AI module for choosing
 						Random random = new Random();
 						double chance = random.nextDouble() * 100;
