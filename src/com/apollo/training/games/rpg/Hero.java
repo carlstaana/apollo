@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.apollo.training.games.GameFunction;
 import com.apollo.training.games.rpg.Skill.Type;
 
 public class Hero extends Character {
@@ -65,6 +66,7 @@ public class Hero extends Character {
 	
 	public Hero(String name, int classNo) throws NumberFormatException {
 		super();
+		setName(name);
 		// code for selecting the hero class
 		switch (classNo) {
 		case 1:
@@ -474,6 +476,9 @@ public class Hero extends Character {
 	public boolean flee(ArrayList<Monster> monstersList) {
 		boolean fleeSuccess = false;
 		System.out.println(getName() + " tries to flee...");
+		GameFunction.delay(1500);
+		GameFunction.clearScreen();
+		
 		
 		boolean hasGreaterLevelThanYou = false;
 		int currentHighestLevel = 0;

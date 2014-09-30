@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import com.apollo.training.book.chapter1.NamePrinter;
 import com.apollo.training.games.GameFunction;
 import com.apollo.training.games.rpg.Skill.AttackType;
 
 public class RPG extends GameFunction {
 	
 	public static void main(String[] args) {
+		NamePrinter printer = new NamePrinter();
 		Scanner in = new Scanner(System.in);
 		String input = null;
 		int command = 0;
@@ -19,7 +21,8 @@ public class RPG extends GameFunction {
 		boolean tryAgain = true;
 		
 		while (tryAgain) {
-			System.out.println("Welcome to Java Strategy Game!");
+			printer.print("Welcome to Java Strategy Game!");
+			delay(1000);
 			// Prompt to enter your character's name
 			while (!valid) {
 				try {
@@ -260,7 +263,7 @@ public class RPG extends GameFunction {
 		}
 		System.out.println("Goodbye!");
 		in.close();
-		System.exit(-1);
+		System.exit(0);
 	}
 
 

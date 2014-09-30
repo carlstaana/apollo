@@ -74,21 +74,21 @@ public class Monster extends Character {
 			setHighAtk(rs.getInt("atk_high"));
 			experienceDrop = rs.getInt("exp_drop");
 			
-			if (targetHero.chanceIsEnabled(50)) {
-				try {
-					Items item = new Items();
-					itemDrop = item.getItemDrop(this);
-				} catch (NullPointerException e) {
-					itemDrop = null;
-				}
-			} else {
-				try {
-					Equipment equipment = new Equipment();
-					itemDrop = equipment.getEquipmentDrop(this);
-				} catch (NullPointerException e) {
-					itemDrop = null;
-				}
-			}
+//			if (targetHero.chanceIsEnabled(50)) {
+//				try {
+//					Items item = new Items();
+//					itemDrop = item.getItemDrop(this);
+//				} catch (NullPointerException e) {
+//					itemDrop = null;
+//				}
+//			} else {
+//				try {
+//					Equipment equipment = new Equipment();
+//					itemDrop = equipment.getEquipmentDrop(this);
+//				} catch (NullPointerException e) {
+//					itemDrop = null;
+//				}
+//			}
 			negativeBuffs.clear();
 			
 		} catch (SQLException e) {
