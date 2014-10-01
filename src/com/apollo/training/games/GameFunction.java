@@ -17,4 +17,14 @@ public class GameFunction {
 			System.out.println();
 		}
 	}
+	
+	public static void pressAnyKeyToContinue() {
+		System.out.println("Press enter to continue...");
+        try {
+            System.in.read();
+        }  
+        catch(Exception e) {
+        	
+        }
+	}
 }
