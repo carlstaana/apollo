@@ -197,6 +197,12 @@ public class Poker extends GameFunction {
 					int choice = 0;
 
 					if (!pokerPlayer.isAi()) {
+						if (table.getHumanCountUnfolded() > 1) {
+							System.out.println("Are you " + pokerPlayer.getName() + "?");
+							pressAnyKeyToContinue();
+							clearScreen();
+						}
+						
 						while (!valid) {
 							// show player's hand
 							pokerPlayer.showHand();
@@ -295,6 +301,7 @@ public class Poker extends GameFunction {
 						break;
 					}
 					delay(1200);
+					clearScreen();
 				} else if (pokerPlayer.getMoney() < table.getBASE_BET() && !pokerPlayer.isFolded()) {
 					System.out.println(pokerPlayer.getName() + " is out of the game.");
 					pokerPlayer.setFolded(true);
@@ -330,6 +337,12 @@ public class Poker extends GameFunction {
 					int choice = 0;
 
 					if (!pokerPlayer.isAi()) {
+						if (table.getHumanCountUnfolded() > 1) {
+							System.out.println("Are you " + pokerPlayer.getName() + "?");
+							pressAnyKeyToContinue();
+							clearScreen();
+						}
+						
 						while (!valid) {
 							pokerPlayer.showHand();
 							if (pokerPlayer.getCurrentBet() <= 0 && table.getPotMoney() <= 0 && table.getHighestBet() <= 0) {
@@ -416,6 +429,7 @@ public class Poker extends GameFunction {
 						break;
 					}
 					delay(1200);
+					clearScreen();
 				} else if (pokerPlayer.getMoney() < table.getBASE_BET() && !pokerPlayer.isFolded()) {
 					System.out.println(pokerPlayer.getName() + " is out of the game.");
 					pokerPlayer.setFolded(true);

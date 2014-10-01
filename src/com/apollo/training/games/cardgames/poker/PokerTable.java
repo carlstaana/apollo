@@ -22,6 +22,8 @@ public class PokerTable {
 	
 	private PokerLogic pokerLogic = new PokerLogic();
 	
+	private int humanCountUnfolded;
+	
 	
 	
 	public PokerTable() {
@@ -91,6 +93,18 @@ public class PokerTable {
 
 	public int getBASE_BET() {
 		return BASE_BET;
+	}
+
+	public int getHumanCountUnfolded() {
+		humanCountUnfolded = 0;
+		
+		for (PokerPlayer pokerPlayer : players) {
+			if (!pokerPlayer.isAi() && !pokerPlayer.isFolded()) {
+				humanCountUnfolded++;
+			}
+		}
+		
+		return humanCountUnfolded;
 	}
 
 	public boolean hasEqualBets() {
