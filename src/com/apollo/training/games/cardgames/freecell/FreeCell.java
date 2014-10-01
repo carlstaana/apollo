@@ -114,6 +114,11 @@ public class FreeCell extends GameFunction {
 						System.out.println("\n--");
 						System.out.println(player.getName() + "'s Turn");
 						if (!player.isAi()) {
+							if (countValidPlayers(players) > 1) {
+								System.out.println("Are you " + player.getName() + "?");
+								pressAnyKeyToContinue();
+							}
+							
 							int selectedCard;
 							sortHand(player);
 							
@@ -158,6 +163,13 @@ public class FreeCell extends GameFunction {
 									}
 								}
 							}
+							
+							// Press Any Key to Continue...
+							if (countValidPlayers(players) > 1) {
+								System.out.println("--END TURN--");
+								pressAnyKeyToContinue();
+								clearScreen();
+							}
 						} else {
 							if (checkIfHandsHasSameSuit(player, baseCard)) {
 								aiDropCard(player, baseCard, deck);
@@ -191,6 +203,9 @@ public class FreeCell extends GameFunction {
 					delay(1000);
 					
 					if (!player.isAi()) {
+						System.out.println("Are you " + player.getName() + "?");
+						pressAnyKeyToContinue();
+						
 						sortHand(player);
 						System.out.println(player.showHand());
 						int selectedCard = 0;
@@ -254,6 +269,16 @@ public class FreeCell extends GameFunction {
 		}
 		
 		in.close();
+	}
+
+	private static int countValidPlayers(ArrayList<FreeCellPlayer> players) {
+		int count = 0;
+		for (FreeCellPlayer freeCellPlayer : players) {
+			if (!freeCellPlayer.isAi() && !freeCellPlayer.isWin()) {
+				count++;
+			}
+		}
+		return count;
 	}
 
 	private static void distributeToPlayers(Deck deck,
@@ -454,7 +479,7 @@ public class FreeCell extends GameFunction {
 		boolean deckDepleted = false;
 		
 		while (!checkIfHandsHasSameSuit(player, baseCard)) {
-			System.out.println(player.getName() + " have no same-suited card. " +player.getName()+ " must draw.");
+			System.out.println(player.getName() + " has no " + baseCard.getSuit() + " in his/her hand. " + player.getName() + " will draw.");
 			delay(1000);
 			if (deck.getDeck().size() > 0) {
 				player.getHand().add(deck.draw());
@@ -462,7 +487,7 @@ public class FreeCell extends GameFunction {
 					System.out.println(player.getName() + " got " + player.getHand().get(player.getHand().size() - 1).toString());
 				}
 			} else {
-				System.out.println("Deck has no cards anymore.");
+				System.out.println("No cards anymore in the deck.");
 				addCardPile(player, players, deck);
 				deckDepleted = true;
 				break;
