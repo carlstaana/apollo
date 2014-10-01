@@ -19,7 +19,7 @@ public class Pairs extends GameFunction {
 		boolean valid = false;
 		
 		// START
-		System.out.println("Welcome to the Game of Pairs!");
+		System.out.println("Welcome to the Java Game of Pairs!");
 		delay(2000);
 		clearScreen();
 		

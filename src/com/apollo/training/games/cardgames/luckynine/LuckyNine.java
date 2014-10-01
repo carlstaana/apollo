@@ -19,7 +19,7 @@ public class LuckyNine extends GameFunction {
 		int difficulty = 0;
 		int raceTo = 0;
 		
-		System.out.println("Hello! Let's play Lucky Nine!");
+		System.out.println("Hello! Let's play Java Lucky Nine!");
 		// add 4 players
 		ArrayList<LuckyNinePlayer> players =  new ArrayList<LuckyNinePlayer>();
 		for (int i = 0; i < 4; i++) {
@@ -163,7 +163,7 @@ public class LuckyNine extends GameFunction {
 							break;
 						} else if (input.equalsIgnoreCase("n")) {
 							System.out.println("Goodbye!");
-							System.exit(1);
+							System.exit(0);
 						} else {
 							throw new NullPointerException();
 						}
