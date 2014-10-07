@@ -3,6 +3,7 @@ package com.apollo.training.games.rpg;
 import java.util.Random;
 
 public class Character {
+	
 	private String name;
 	
 	private int level;
