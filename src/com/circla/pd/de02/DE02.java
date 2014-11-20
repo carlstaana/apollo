@@ -32,7 +32,7 @@ public class DE02 {
 		classNo = (double) input.nextInt() + 0.3;
 		targetRes = (classNo + 1) * 10 * 1000;
 		System.out.println("[Class Number]:\t" + classNo);
-		System.out.println("[Target Resistance]:\t" + deFunc.toKOhms(targetRes) + " k" + deFunc.ohmSign());
+		System.out.println("[Target Resistance]:\t" + deFunc.toKOhms(targetRes));
 		System.out.println("computing the top three values...");
 		
 		// computation START
@@ -127,7 +127,7 @@ public class DE02 {
 			double violet = topThree[i][4];
 			double white = topThree[i][5];
 			double totalResistance = brown + orange + green + violet + white;
-			System.out.println("Total Resistance:\t" + deFunc.toKOhms(totalResistance) + " k" + deFunc.ohmSign());
+			System.out.println("Total Resistance:\t" + (int) totalResistance + " " + deFunc.ohmSign());
 			System.out.println("\tR-brown:\t" + (int) brown + " " + deFunc.ohmSign());
 			System.out.println("\tR-orange:\t" + (int) orange + " " + deFunc.ohmSign());
 			System.out.println("\tR-green:\t" + (int) green + " " + deFunc.ohmSign());
