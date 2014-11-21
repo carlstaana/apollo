@@ -32,7 +32,7 @@ public class DE02 {
 		classNo = (double) input.nextInt() + 0.3;
 		targetRes = (classNo + 1) * 10 * 1000;
 		System.out.println("[Class Number]:\t" + classNo);
-		System.out.println("[Target Resistance]:\t" + deFunc.toKOhms(targetRes));
+		System.out.println("[Target Resistance]:\t" + deFunc.displayToKOhms(targetRes));
 		System.out.println("computing the top three values...");
 		
 		// computation START

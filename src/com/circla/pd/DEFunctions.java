@@ -9,14 +9,18 @@ import com.apollo.training.OSValidator;
 
 public class DEFunctions {
 	private OSValidator os = new OSValidator();
+	
 	private ArrayList<Double> E24 = new ArrayList<Double>();
 	private ArrayList<Double> capacitors = new ArrayList<Double>();
+	
 	private double desErr;
+	
 	
 	public DEFunctions() {
 		loadE24();
 		loadCapacitors();
 	}
+	
 	
 	private void loadE24() {
 		double factors[] = {1.0, 1.1, 1.2, 1.3, 1.5, 1.6, 1.8, 2.0, 2.2, 2.4, 2.7, 3.0, 3.3, 3.6, 3.9, 4.3, 4.7, 5.1, 5.6, 6.2, 6.8, 7.5, 8.2, 9.1};
@@ -49,8 +53,8 @@ public class DEFunctions {
 		}
 	}
 
-	public double computeDesErr(double target, double computed) {
-		desErr = (Math.abs(target - computed) / target) * 100;
+	public double computeDesErr(double target, double measured) {
+		desErr = (Math.abs(target - measured) / target) * 100;
 		return getDesErr();
 	}
 
@@ -70,12 +74,6 @@ public class DEFunctions {
 		}
 	}
 
-	public String toKOhms(double ohmValue) {
-		BigDecimal bd = new BigDecimal(ohmValue);
-		bd = bd.divide(new BigDecimal(1000));
-		return bd.doubleValue() + " k" + ohmSign();
-	}
-	
 	public String microfaradSign() {
 		if (os.isUnix()) {
 			return "\u00B5" + "F";
@@ -83,23 +81,35 @@ public class DEFunctions {
 			return "uF";
 		}
 	}
-
-	public String picoFaradSign() {
-		return "pF";
-	}
 	
+	public String displayToKOhms(double ohmValue) {
+		BigDecimal bd = new BigDecimal(ohmValue);
+		bd = bd.divide(new BigDecimal(1000));
+		return bd.doubleValue() + " k" + ohmSign();
+	}
+
+	public void displayMicroToPico(double microfarad) {
+		BigDecimal bd = new BigDecimal(microfarad);
+		bd = bd.multiply(new BigDecimal(1000000));
+		System.out.println(bd.doubleValue() + " pF");
+	}
+
+	/**
+	 * Converts microfarad to farad (for computation purposes)
+	 * @param microfarad is the value to be converted
+	 * @return capacitance in farad
+	 */
 	public double microfaradToBaseValue(double microfarad) {
 		BigDecimal bd = new BigDecimal(microfarad);
 		bd = bd.divide(new BigDecimal(100000));
 		return bd.doubleValue();
 	}
 
-	public double microToPico(double microfarad) {
-		BigDecimal bd = new BigDecimal(microfarad);
-		bd = bd.multiply(new BigDecimal(1000000));
-		return bd.doubleValue();
-	}
-	
+	/**
+	 * Gets the closest E24 commercial resistor value of your input
+	 * @param value is the computed resistance (in Ohms)
+	 * @return E24 resistor value
+	 */
 	public int getCommercialValueR(double value) {
 		int bestCommValue = 0;
 		double bestTolerance = 1000;
@@ -132,6 +142,11 @@ public class DEFunctions {
 		return bestCommValue;
 	}
 	
+	/**
+	 * Gets the closest and most common capacitor value of your input
+	 * @param value is the computed capacitance (in microfarads)
+	 * @return commercial capacitor value
+	 */
 	public double getCommercialValueC(double value) {
 		double bestCommValue = 0;
 		double bestTolerance = 1000;
