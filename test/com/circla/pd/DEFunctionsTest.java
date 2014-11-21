@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class DesErrComputerTest {
+public class DEFunctionsTest {
 
 	@Test
 	public void testDesErr() {
@@ -18,9 +18,15 @@ public class DesErrComputerTest {
 	@Test
 	public void testGetCommercialValue() throws Exception {
 		DEFunctions defunc = new DEFunctions();
-		int target = 360;
+		int target = 390;
 		double sample = 375;
-		int result = defunc.getCommercialValue(sample);
+		int result = defunc.getCommercialValueR(sample);
 		assertEquals(result, target);
+	}
+	
+	@Test
+	public void testMicroFaradSign() throws Exception {
+		DEFunctions defunc = new DEFunctions();
+		System.out.println(defunc.microfaradSign());
 	}
 }
