@@ -3,6 +3,7 @@ package com.apollo.training.set3.calc2;
 import java.math.BigDecimal;
 
 public class CalculatorEngine {
+	@SuppressWarnings("unused")
 	private BigDecimal currentValue = new BigDecimal(0);	// initialize currentValue = 0
 	private BigDecimal currentDisplay;
 	

@@ -6,7 +6,7 @@ public class Easter {
 	private int easterDay;
 
 	public Easter(int year) {
-		this.year = year;
+		this.setYear(year);
 		
 		int a = year % 19;
 		int b = year / 100;
@@ -55,6 +55,14 @@ public class Easter {
 
 	public int getEasterSundayDay() {
 		return easterDay;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
 	}
 
 }

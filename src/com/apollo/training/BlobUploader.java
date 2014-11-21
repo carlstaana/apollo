@@ -10,11 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.mysql.jdbc.PreparedStatement;
-
 public class BlobUploader {
 	
-    public static void main(String[] args) {
+    @SuppressWarnings("unused")
+	public static void main(String[] args) {
     	// MYSQL -- database mgmt
     	String mysqlUrl = "jdbc:mysql://localhost:3306/game";
     	String mySqlUser = "root";

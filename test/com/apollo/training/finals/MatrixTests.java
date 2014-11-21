@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import com.apollo.training.finals.matrix.IncompatibleDimensionsException;
 
+@SuppressWarnings("unused")
 public class MatrixTests {
 
 	@Test

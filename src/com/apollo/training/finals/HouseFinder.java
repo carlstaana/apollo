@@ -2,16 +2,15 @@ package com.apollo.training.finals;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.math.BigDecimal;
 import java.util.Scanner;
 
 import com.apollo.training.finals.House.Heating;
 
 public class HouseFinder {
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
+		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
 		String input;
 		int numOfBedrooms = 0;

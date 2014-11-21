@@ -9,9 +9,9 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 @XStreamAlias("priceList")
 public class PriceList {
 	@XStreamImplicit(itemFieldName = "price")
-	private List price = new ArrayList();
+	private List<?> price = new ArrayList<Object>();
 
-	public List getPrice() {
+	public List<?> getPrice() {
 		return price;
 	}
 }

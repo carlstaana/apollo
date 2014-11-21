@@ -1,12 +1,5 @@
 package com.apollo.training.blobconverter;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -22,6 +15,7 @@ import java.security.cert.X509Certificate;
 
 public class BlobConverter {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		// poeadb.tables that has blobs
 		// -- archive_message.msg, inbox.msg, key.pkfile, key.certfile, keystore.key, outbox.msg

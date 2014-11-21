@@ -14,6 +14,7 @@ import com.apollo.training.set5.techtree.Skill.SkillType;
  *
  */
 public class Character {
+	@SuppressWarnings("unused")
 	private String username;
 	private CharacterType type;
 	private ArrayList<Skill> skillset = new ArrayList<Skill>();

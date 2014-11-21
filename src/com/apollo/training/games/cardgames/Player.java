@@ -35,6 +35,7 @@ public class Player {
 		}
 		
 		hand.clear();
+		in.close();
 	}
 	
 	public Player(String name) {

@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class AirlineSeatingTests {
 
+	@SuppressWarnings("unused")
 	@Test
 	public void test() {
 		AirlineSeating seating = new AirlineSeating();

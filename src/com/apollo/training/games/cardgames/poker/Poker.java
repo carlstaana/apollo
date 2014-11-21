@@ -160,6 +160,7 @@ public class Poker extends GameFunction {
 		delay(1000);
 		clearScreen();
 		System.out.println("Goodbye!");
+		in.close();
 		System.exit(1);
 	}
 
@@ -313,6 +314,7 @@ public class Poker extends GameFunction {
 			pokerPlayer.setCurrentBet(0);
 		}
 		table.setHighestBet(0);
+		in.close();
 	}
 
 	private static void firstRound(PokerTable table) {
@@ -441,6 +443,7 @@ public class Poker extends GameFunction {
 			pokerPlayer.setCurrentBet(0);
 		}
 		table.setHighestBet(0);
+		in.close();
 	}
 
 	private static void newDeal(PokerTable table) {

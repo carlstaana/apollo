@@ -8,12 +8,12 @@ public class BankAccount {
 	
 	// CONSTRUCTORS
 	public BankAccount() {
-		accountNumber = lastAssignedNumber++;
+		setAccountNumber(lastAssignedNumber++);
 	}
 	
 	public BankAccount(double initialBalance) {
 		balance = initialBalance;
-		accountNumber = lastAssignedNumber++;
+		setAccountNumber(lastAssignedNumber++);
 	}
 
 	
@@ -78,6 +78,14 @@ public class BankAccount {
 	
 	public void setBalance(double balance) {
 		this.balance = balance;
+	}
+
+	public int getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
 	}
 
 	

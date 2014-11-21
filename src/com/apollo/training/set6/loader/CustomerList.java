@@ -9,9 +9,9 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 @XStreamAlias("customerList")
 public class CustomerList {
 	@XStreamImplicit(itemFieldName = "customer")
-	private List customer = new ArrayList();
+	private List<?> customer = new ArrayList<Object>();
 
-	public List getCustomer() {
+	public List<?> getCustomer() {
 		return customer;
 	}
 }

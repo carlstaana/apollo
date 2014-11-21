@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class LottoPicker {
+	@SuppressWarnings("unused")
 	private long seed;
 	Random random = new Random();
 	public LottoPicker() {

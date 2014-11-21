@@ -137,8 +137,8 @@ public class DEFunctions {
 			if (decision.equalsIgnoreCase("y") || decision.equalsIgnoreCase("yes")) {
 				bestCommValue = anotherCommValue;
 			}
+			input.close();
 		}
-		
 		return bestCommValue;
 	}
 	
@@ -174,6 +174,7 @@ public class DEFunctions {
 			if (decision.equalsIgnoreCase("y") || decision.equalsIgnoreCase("yes")) {
 				bestCommValue = anotherCommValue;
 			}
+			input.close();
 		}
 		
 		return bestCommValue;

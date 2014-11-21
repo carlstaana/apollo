@@ -37,6 +37,32 @@ public class Skill {
 
 	
 	
+	public Skill(int id, String name, Type skillType, HeroClass type,
+			AttackType atkType, int damage, int accuracy, int levelRequired, int mpCost, String description,
+			Status effectToTarget, int effectChance, int duration) {
+		this.id = id;
+		this.name = name;
+		this.skillType = skillType;
+		this.type = type;
+		this.atkType = atkType;
+		this.damage = damage;
+		this.accuracy = accuracy;
+		this.levelRequired = levelRequired;
+		this.mpCost = mpCost;
+		this.description = description;
+		this.effectToTarget = effectToTarget;
+		this.effectChance = effectChance;
+		this.duration = duration;
+	}
+
+
+
+	public Skill() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public boolean hasEffect() {
 		if (getEffectToTarget() == null) {
 			return false;

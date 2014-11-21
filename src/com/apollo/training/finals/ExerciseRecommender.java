@@ -28,5 +28,6 @@ public class ExerciseRecommender {
 		} catch (InputMismatchException e) {
 			System.out.println("Invalid temperature:" + temperature);
 		}
+		in.close();
 	}
 }

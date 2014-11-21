@@ -238,6 +238,7 @@ public class Equipment {
 				valid = false;
 			}
 		}
+		in.close();
 	}
 	
 	public static void equip(Hero hero, Equipment originalEquipment, Equipment equipment) {

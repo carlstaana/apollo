@@ -68,6 +68,7 @@ public class CreditComputation {
 			}
 			
 		}
+		in.close();
 	}
 
 }

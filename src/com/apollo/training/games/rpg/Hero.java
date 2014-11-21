@@ -232,7 +232,7 @@ public class Hero extends Character {
 		
 		// check if available skills has something
 		if (availableSkills.size() <= 0) {
-			//in.close();
+			in.close();
 			return null;
 		} else {
 			valid = false;
@@ -264,6 +264,7 @@ public class Hero extends Character {
 				}
 			}
 		}
+		in.close();
 		return null;
 	}
 
@@ -595,7 +596,7 @@ public class Hero extends Character {
 						valid = false;
 					}
 				}
-
+				in.close();
 			} else {
 				System.out.println("There are no items in the inventory.");
 				return true;
@@ -692,6 +693,7 @@ public class Hero extends Character {
 						valid = false;
 					}
 				}
+				in.close();
 			} else {
 				System.out.println("There are no available equipment in the inventory.");
 				return true;

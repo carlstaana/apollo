@@ -1,11 +1,10 @@
 package com.apollo.training.set5.graph2;
 
-import com.thoughtworks.xstream.XStream;
-
 /**
  * Class where the connection of two nodes and their edgeValue are stored.
  * @author apollo/carlstaana
  */
+@SuppressWarnings("rawtypes")
 public class Edge extends WeightedGraph {
 	public Node node1;
 	public Node node2;

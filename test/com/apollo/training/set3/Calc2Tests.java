@@ -22,7 +22,7 @@ public class Calc2Tests {
 	public void testAdd() {
 		// good test
 		System.out.println("Addition Test:");
-		CalculatorEngine calc = new CalculatorEngine();
+		new CalculatorEngine();
 		//Add add = new Add();
 		Operation op = new Add(); // example of Polymorphism
 		BigDecimal currentTotal = new BigDecimal(5);
@@ -41,7 +41,7 @@ public class Calc2Tests {
 	public void testSubtract() throws Exception {
 		// good test
 		System.out.println("Subtraction Test:");
-		CalculatorEngine calc = new CalculatorEngine();
+		new CalculatorEngine();
 		Subtract sub = new Subtract();
 		BigDecimal currentTotal = new BigDecimal(5);
 		BigDecimal input = new BigDecimal(4);
@@ -59,7 +59,7 @@ public class Calc2Tests {
 	public void testMultiply() throws Exception {
 		// good test
 		System.out.println("Multiplication Test:");
-		CalculatorEngine calc = new CalculatorEngine();
+		new CalculatorEngine();
 		Multiply mul = new Multiply();
 		BigDecimal currentTotal = new BigDecimal(5);
 		BigDecimal input = new BigDecimal(4);
@@ -77,7 +77,7 @@ public class Calc2Tests {
 	public void testDivide() throws Exception {
 		// good test
 		System.out.println("Division Test:");
-		CalculatorEngine calc = new CalculatorEngine();
+		new CalculatorEngine();
 		Divide div = new Divide();
 		BigDecimal currentTotal = new BigDecimal(40);
 		BigDecimal input = new BigDecimal(4);
@@ -95,7 +95,7 @@ public class Calc2Tests {
 	public void testSquareRoot() throws Exception {
 		// good test
 		System.out.println("Square Root Test:");
-		CalculatorEngine calc = new CalculatorEngine();
+		new CalculatorEngine();
 		SquareRoot sqroot = new SquareRoot();
 		BigDecimal input = new BigDecimal(16);
 		BigDecimal currentTotal = sqroot.compute(null, input);
@@ -111,7 +111,7 @@ public class Calc2Tests {
 	public void testPercent() throws Exception {
 		// good test
 		System.out.println("Percentage Test:");
-		CalculatorEngine calc = new CalculatorEngine();
+		new CalculatorEngine();
 		Percent perc = new Percent();
 		BigDecimal input = new BigDecimal(50);
 		BigDecimal currentTotal = perc.compute(null, input);
@@ -127,7 +127,7 @@ public class Calc2Tests {
 	public void testFraction() throws Exception {
 		// good test
 		System.out.println("Fraction Test:");
-		CalculatorEngine calc = new CalculatorEngine();
+		new CalculatorEngine();
 		Fraction frac = new Fraction();
 		BigDecimal input = new BigDecimal(2);
 		BigDecimal currentTotal = frac.compute(null, input);

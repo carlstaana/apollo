@@ -1,20 +1,12 @@
 package com.apollo.training.gui;
 
 import java.awt.Button;
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Frame;
-import java.awt.Image;
 import java.awt.Label;
-import java.awt.Panel;
-import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -25,6 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+@SuppressWarnings("serial")
 public class Counter extends Frame {
 
 	private Label lbl;

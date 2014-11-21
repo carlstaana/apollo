@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class BlobDownloader {
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		// MYSQL -- database mgmt
     	String mysqlUrl = "jdbc:mysql://localhost:3306/game";

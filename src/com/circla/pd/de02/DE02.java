@@ -6,6 +6,7 @@ import com.circla.pd.DEFunctions;
 
 public class DE02 {
 	
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		DEFunctions deFunc = new DEFunctions();
 		Scanner input = new Scanner(System.in);

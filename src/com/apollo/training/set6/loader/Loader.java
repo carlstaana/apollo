@@ -57,6 +57,7 @@ public class Loader {
 	}
 
 	
+	@SuppressWarnings("finally")
 	public void CreateProductTable() throws SQLException {
 		// --CREATING "product" TABLE
 		try {

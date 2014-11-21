@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import com.apollo.training.games.cardgames.Card.Suit;
 
+@SuppressWarnings("unused")
 public class UnicodeTests {
 	@Test
 	public void test() {

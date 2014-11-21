@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+@SuppressWarnings("serial")
 public class House implements Serializable {
 	private String address;
 	private int numOfBedrooms;
@@ -41,7 +42,9 @@ public class House implements Serializable {
 		houseList.add(house);
 	}
 
+	@SuppressWarnings("unchecked")
 	static void load(File dataFile) throws FileNotFoundException, IOException, ClassNotFoundException {
+		@SuppressWarnings("resource")
 		ObjectInputStream in = new ObjectInputStream(new FileInputStream(dataFile));
 		houseList = (ArrayList<House>) in.readObject();
 	}

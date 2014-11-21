@@ -177,6 +177,7 @@ public class LuckyNine extends GameFunction {
 				break;
 			}
 		}
+		in.close();
 	}
 
 	private static void distributeToPlayers(Deck deck,

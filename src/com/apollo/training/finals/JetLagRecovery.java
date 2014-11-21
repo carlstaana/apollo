@@ -3,12 +3,14 @@ package com.apollo.training.finals;
 import java.util.Scanner;
 
 public class JetLagRecovery {
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		int travel;
 		int timeZones;
 		int departureTime;
 		int arrivalTime;
 		double recovery;
+		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
 		String input;
 		boolean valid = false;
