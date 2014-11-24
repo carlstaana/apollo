@@ -88,7 +88,114 @@ public class Character {
 	}
 
 	public String displayHP() {
-		return "HP: " + health + "/" + maxHP;
+		return "HP: " + displayGauge(health, maxHP) + " " + health + "/" + maxHP;
+	}
+	
+	public String displayGauge(int current, int maximum) {
+		String result = "|";
+		double percentage = ((double) current/ (double) maximum) * 100;
+		if (percentage > 0) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 5) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 10) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 15) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 20) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 25) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 30) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 35) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 40) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 45) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 50) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 55) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 60) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 65) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 70) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 75) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 80) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 85) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 90) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		if (percentage > 95) {
+			result += "=";
+		} else {
+			result += " ";
+		}
+		result += "|";
+		return result;
 	}
 	
 	public int getNormalDamage() {

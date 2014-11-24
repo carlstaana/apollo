@@ -152,7 +152,7 @@ public class Hero extends Character {
 	}
 	
 	public String displayMP() {
-		String output = "MP: " + mana + "/" + maxMP;
+		String output = "MP: " + displayGauge(mana, maxMP) + " " + mana + "/" + maxMP;
 		if (status != HeroStatus.NONE) {
 			output += " [" + status + "]";
 		}
