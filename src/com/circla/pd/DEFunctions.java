@@ -128,7 +128,6 @@ public class DEFunctions {
 			}
 		}
 		
-		System.out.println("Commercial Value = " + bestCommValue + " " + ohmSign());
 		if (anotherCommValue > 0) {
 			Scanner input = new Scanner(System.in);
 			System.out.println("Commercial Value #2 = " + anotherCommValue + " " + ohmSign());
