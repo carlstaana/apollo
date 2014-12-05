@@ -1,5 +1,6 @@
 package com.circla.pd.de06;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 import com.apollo.training.book.chapter1.NamePrinter;
@@ -40,7 +41,12 @@ public class DE06 {
 		System.out.println("   Current 1: " + r1Current + " mA");
 		System.out.println("   Current 2: " + r2Current + " mA");
 		System.out.println("   Current 3: " + r3Current + " mA");
-		System.out.print("\nSelect Version ([1] Direct Solution; [2] Top 3 Design Errors):\t");
+		System.out.print("\nSelect Version\n"
+				+ "[1] Direct Solution\n"
+				+ "[2] Top 3 Design Errors\n"
+				+ "[3] 2-Resistor Combination\n"
+				+ "[4] 3-Resistor Combination\n"
+				+ "Answer:\t");
 		int version = input.nextInt();
 		
 		if (version == 1) {
@@ -90,26 +96,27 @@ public class DE06 {
 		else if (version == 2) {
 			// computation -- START
 			// get values to trial and error total resistance
-			for (Double r1 : defunc.getE24()) {
-				for (Double r2 : defunc.getE24()) {
-					for (Double r3 : defunc.getE24()) {
+			System.out.println("Computing...");
+			for (BigDecimal r1 : defunc.getE24()) {
+				for (BigDecimal r2 : defunc.getE24()) {
+					for (BigDecimal r3 : defunc.getE24()) {
 						// temporary variables for resistors
 						double compTotalResistance;
 						double compTotalCurrent;
 						double desErrTotalCurrent;
 						double compCurrent1, compCurrent2, compCurrent3;
 						double desErrCurrent1, desErrCurrent2, desErrCurrent3;
-						compTotalResistance = 1/((1/r1)+(1/r2)+(1/r3));
+						compTotalResistance = 1/((1/r1.doubleValue())+(1/r2.doubleValue())+(1/r3.doubleValue()));
 						compTotalCurrent = (VCC/compTotalResistance) * 1000;
-						compCurrent1 = (VCC/r1) * 1000;
-						compCurrent2 = (VCC/r2) * 1000;
-						compCurrent3 = (VCC/r3) * 1000;
+						compCurrent1 = (VCC/r1.doubleValue()) * 1000;
+						compCurrent2 = (VCC/r2.doubleValue()) * 1000;
+						compCurrent3 = (VCC/r3.doubleValue()) * 1000;
 						desErrTotalCurrent = defunc.computeDesErr(totalCurrent, compTotalCurrent);
 						desErrCurrent1 = defunc.computeDesErr(r1Current, compCurrent1);
 						desErrCurrent2 = defunc.computeDesErr(r2Current, compCurrent2);
 						desErrCurrent3 = defunc.computeDesErr(r3Current, compCurrent3);
 						
-						VariablesDE06 compVariables = new VariablesDE06(desErrTotalCurrent, desErrCurrent1, desErrCurrent2, desErrCurrent3, compTotalCurrent, compCurrent1, compCurrent2, compCurrent3, r1, r2, r3);
+						VariablesDE06 compVariables = new VariablesDE06(desErrTotalCurrent, desErrCurrent1, desErrCurrent2, desErrCurrent3, compTotalCurrent, compCurrent1, compCurrent2, compCurrent3, r1.doubleValue(), r2.doubleValue(), r3.doubleValue());
 						
 						// adding to topThree
 						if (topThree[0] == null) {
@@ -154,6 +161,43 @@ public class DE06 {
 				System.out.println("   DesErr (i2): " + defunc.to3SigFig(topThree[i].getDesErrCurrent2()) + " %");
 				System.out.println("   DesErr (i3): " + defunc.to3SigFig(topThree[i].getDesErrCurrent3()) + " %");
 				System.out.println();
+			}
+		}
+		else if (version == 3) {
+			// computation -- START
+			// get possible 6 resistors
+			System.out.println("Computing...");
+			final double totalR1 = VCC/(r1Current/1000);
+			final double totalR2 = VCC/(r2Current/1000);
+			final double totalR3 = VCC/(r3Current/1000);
+			
+			double[][] threeCommR1 = defunc.getThreePossiblePairs(totalR1);
+			double[][] threeCommR2 = defunc.getThreePossiblePairs(totalR2);
+			double[][] threeCommR3 = defunc.getThreePossiblePairs(totalR3);
+			
+			for (int i = 0; i < 3; i++) {
+				double r11 = threeCommR1[i][0];
+				double r12 = threeCommR1[i][1];
+				double rt1 = r11 + r12;
+				double r21 = threeCommR2[i][0];
+				double r22 = threeCommR2[i][1];
+				double rt2 = r21 + r22;
+				double r31 = threeCommR3[i][0];
+				double r32 = threeCommR3[i][1];
+				double rt3 = r31 + r32;
+				
+				double compTotalResistance = 1/((1/rt1)+(1/rt2)+(1/rt3));
+				double compTotalCurrent = (VCC/compTotalResistance) * 1000;
+				double compCurrent1 = (VCC/rt1) * 1000;
+				double compCurrent2 = (VCC/rt2) * 1000;
+				double compCurrent3 = (VCC/rt3) * 1000;
+				
+				double desErrTotalCurrent = defunc.computeDesErr(totalCurrent, compTotalCurrent);
+				double desErrCurrent1 = defunc.computeDesErr(r1Current, compCurrent1);
+				double desErrCurrent2 = defunc.computeDesErr(r2Current, compCurrent2);
+				double desErrCurrent3 = defunc.computeDesErr(r3Current, compCurrent3);
+				VariablesDE06 compVariables = new VariablesDE06(desErrTotalCurrent, desErrCurrent1, desErrCurrent2, desErrCurrent3, compTotalCurrent, compCurrent1, compCurrent2, compCurrent3, r11, r12, r21, r22, r31, r32);
+				compVariables.toString2();
 			}
 		}
 	}

@@ -27,6 +27,24 @@ public class VariablesDE06 {
 	
 	private Double r3;
 	
+	private Double r11;
+	
+	private Double r12;
+	
+	private Double r13;
+	
+	private Double r21;
+	
+	private Double r22;
+	
+	private Double r23;
+	
+	private Double r31;
+	
+	private Double r32;
+
+	private Double r33;
+	
 	public VariablesDE06() {
 		// TODO Auto-generated constructor stub
 	}
@@ -47,6 +65,28 @@ public class VariablesDE06 {
 		this.r2 = r2;
 		this.r3 = r3;
 		computeMaxDesErr();
+	}
+
+	public VariablesDE06(double desErrTotalCurrent, double desErrCurrent1,
+			double desErrCurrent2, double desErrCurrent3,
+			double compTotalCurrent, double compCurrent1, double compCurrent2,
+			double compCurrent3, double r11, double r12,
+			double r21, double r22, double r31,
+			double r32) {
+		this.desErrCurrentTotal = desErrTotalCurrent;
+		this.desErrCurrent1 = desErrCurrent1;
+		this.desErrCurrent2 = desErrCurrent2;
+		this.desErrCurrent3 = desErrCurrent3;
+		this.totalCurrent = compTotalCurrent;
+		this.current1 = compCurrent1;
+		this.current2 = compCurrent2;
+		this.current3 = compCurrent3;
+		this.r11 = r11;
+		this.r12 = r12;
+		this.r21 = r21;
+		this.r22 = r22;
+		this.r31 = r31;
+		this.r32 = r32;
 	}
 
 	private void computeMaxDesErr() {
@@ -102,6 +142,47 @@ public class VariablesDE06 {
 
 	public Double getR3() {
 		return r3;
+	}
+
+	public Double getR11() {
+		return r11;
+	}
+
+	public Double getR12() {
+		return r12;
+	}
+
+	public Double getR13() {
+		return r13;
+	}
+
+	public Double getR21() {
+		return r21;
+	}
+
+	public Double getR22() {
+		return r22;
+	}
+
+	public Double getR23() {
+		return r23;
+	}
+
+	public Double getR31() {
+		return r31;
+	}
+
+	public Double getR32() {
+		return r32;
+	}
+
+	public Double getR33() {
+		return r33;
+	}
+
+	public void toString2() {
+		System.out.println(maxDesErr);
+		
 	}
 
 }
