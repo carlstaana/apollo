@@ -57,6 +57,5 @@
 	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/postgresql-9.3-1102.jdbc3.jar"/>
 	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/postgresql-9.3-1102.jdbc4.jar"/>
 	<classpathentry exported="true" kind="lib" path="/home/apollo/Downloads/postgresql-9.3-1102.jdbc41.jar"/>
-	<classpathentry kind="lib" path="/home/apollo/jexcelapi/jxl.jar"/>
 	<classpathentry kind="output" path="build"/>
 </classpath>
