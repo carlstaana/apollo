@@ -37,6 +37,8 @@ public class DBPExcelFileGenerator {
 	
 	public DBPExcelFileGenerator(String path) {
 		DBPExcelFileGenerator.path = path;
+		transactions = new ArrayList<DBPTransaction>();
+		
 		if (isFileExists()) {
 			if (path.startsWith("CAS")) {
 				logType = LogType.CAS;
@@ -55,7 +57,6 @@ public class DBPExcelFileGenerator {
 			try {
 				fr = new FileReader(DBPExcelFileGenerator.path);
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			reader = new BufferedReader(fr);
@@ -69,27 +70,46 @@ public class DBPExcelFileGenerator {
 
 	public void saveTransactions() {
 		String currentLine = null;
-		ArrayList<String> transactionBlock = new ArrayList<String>();
+		ArrayList<DBPTransaction> transactionBlocks = new ArrayList<DBPTransaction>();
 		try {
 			currentLine = reader.readLine();
 			do {
 				if (currentLine.contains("process() -- START")) {
-					transactionBlock = new ArrayList<String>();
-					transactionBlock.add(currentLine);
+					transactionBlocks.add(new DBPTransaction(currentLine, getRRN(currentLine)));
 				}
 				else if (currentLine.contains("process() -- END")) {
-					transactionBlock.add(currentLine);
-					transactions.add(new DBPTransaction(transactionBlock));
+					Integer indexToBeRemoved = null;
+					for (int i = 0; i < transactionBlocks.size(); i++) {
+						if (currentLine.contains(transactionBlocks.get(i).rrn)) {
+							transactionBlocks.get(i).addToTransactionBlock(currentLine);
+							if (!transactionBlocks.get(i).output.isEmpty()) {
+								transactions.add(transactionBlocks.get(i));
+								indexToBeRemoved = i;
+							}
+							break;
+						}
+					}
+					
+					transactionBlocks.remove(indexToBeRemoved.intValue());
 				}
 				else {
-					transactionBlock.add(currentLine);
+					for (DBPTransaction dbpTransaction : transactionBlocks) {
+						if (currentLine.contains(dbpTransaction.rrn)) {
+							dbpTransaction.addToTransactionBlock(currentLine);
+						}
+					}
 				}
+				
 				currentLine = reader.readLine();
 			} while (currentLine != null);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private String getRRN(String currentLine) {
+		String[] splitLines = currentLine.split(" ");
+		return splitLines[3].substring(4, 16);
 	}
 
 	public boolean isFileExists() {
@@ -219,7 +239,6 @@ public class DBPExcelFileGenerator {
 			}
 			writer.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -230,7 +249,6 @@ public class DBPExcelFileGenerator {
 		try {
 			testResult.add(this.reader.readLine());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (testResult.get(0).contains("process() -- START")) {
@@ -238,7 +256,6 @@ public class DBPExcelFileGenerator {
 				try {
 					currentline = this.reader.readLine();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				testResult.add(currentline);
@@ -258,7 +275,6 @@ public class DBPExcelFileGenerator {
 				currentLine = reader.readLine();
 			} while (currentLine != null);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

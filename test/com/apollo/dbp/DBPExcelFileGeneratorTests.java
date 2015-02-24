@@ -32,18 +32,19 @@ public class DBPExcelFileGeneratorTests {
 //		excel.testCountTransactions();
 //	}
 
-//	@Test
-//	public void testSaveTransactions() throws Exception {
-//		DBPExcelFileGenerator excel = new DBPExcelFileGenerator("VISALogs.20150121.txt");
-//		assertTrue(!excel.getTransactions().isEmpty());
-//	}
-	
 	@Test
-	public void generateExcelCSVFile() throws Exception {
-		DBPExcelFileGenerator excel = new DBPExcelFileGenerator("VISALogs.20150123.txt");
+	public void testSaveTransactions() throws Exception {
+		DBPExcelFileGenerator excel = new DBPExcelFileGenerator("VISALogs.20150127.txt");
 		excel.generateCSVFile();
-		assertTrue(new File("VISATransactions.20150123.csv").exists());
+		assertTrue(!excel.getTransactions().isEmpty());
 	}
+	
+//	@Test
+//	public void generateExcelCSVFile() throws Exception {
+//		DBPExcelFileGenerator excel = new DBPExcelFileGenerator("CASLogs.20150127.txt");
+//		excel.generateCSVFile();
+//		assertTrue(new File("CASTransactions.20150127.csv").exists());
+//	}
 	
 //	@Test
 //	public void testCleanLogFile() throws Exception {
